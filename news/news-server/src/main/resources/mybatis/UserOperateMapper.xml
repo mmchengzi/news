@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.masterchengzi.newsserver.mybatis.UserOperateMapper" >
+  <resultMap id="BaseResultMap" type="com.masterchengzi.newsserver.entity.UserOperate" >
+    <result column="user_id" property="userId" jdbcType="VARCHAR" />
+    <result column="news_id" property="newsId" jdbcType="VARCHAR" />
+    <result column="comment" property="comment" jdbcType="VARCHAR" />
+    <result column="time" property="time" jdbcType="TIMESTAMP" />
+    <result column="is_love" property="isLove" jdbcType="INTEGER" />
+  </resultMap>
+  <insert id="insert" parameterType="com.masterchengzi.newsserver.entity.UserOperate" >
+    insert into user_operate (user_id, news_id, comment,
+      time, is_love)
+    values (#{userId,jdbcType=VARCHAR}, #{newsId,jdbcType=VARCHAR}, #{comment,jdbcType=VARCHAR},
+      #{time,jdbcType=TIMESTAMP}, #{isLove,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.masterchengzi.newsserver.entity.UserOperate" >
+    insert into user_operate
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="newsId != null" >
+        news_id,
+      </if>
+      <if test="comment != null" >
+        comment,
+      </if>
+      <if test="time != null" >
+        time,
+      </if>
+      <if test="isLove != null" >
+        is_love,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="newsId != null" >
+        #{newsId,jdbcType=VARCHAR},
+      </if>
+      <if test="comment != null" >
+        #{comment,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null" >
+        #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isLove != null" >
+        #{isLove,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>

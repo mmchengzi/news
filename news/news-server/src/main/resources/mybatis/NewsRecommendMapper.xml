@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.masterchengzi.newsserver.mybatis.NewsRecommendMapper" >
+  <resultMap id="BaseResultMap" type="com.masterchengzi.newsserver.entity.NewsRecommend" >
+    <result column="user_id" property="userId" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.masterchengzi.newsserver.entity.NewsRecommend" extends="BaseResultMap" >
+    <result column="news_score" property="newsScore" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Blob_Column_List" >
+    news_score
+  </sql>
+  <insert id="insert" parameterType="com.masterchengzi.newsserver.entity.NewsRecommend" >
+    insert into news_recommend (user_id, news_score)
+    values (#{userId,jdbcType=VARCHAR}, #{newsScore,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.masterchengzi.newsserver.entity.NewsRecommend" >
+    insert into news_recommend
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="newsScore != null" >
+        news_score,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="newsScore != null" >
+        #{newsScore,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.masterchengzi.newsserver.mybatis.UserBehaviorMapper" >
+  <resultMap id="BaseResultMap" type="com.masterchengzi.newsserver.entity.UserBehavior" >
+    <result column="user_id" property="userId" jdbcType="VARCHAR" />
+    <result column="news_id" property="newsId" jdbcType="VARCHAR" />
+    <result column="news_tag" property="newsTag" jdbcType="VARCHAR" />
+    <result column="behavior_type" property="behaviorType" jdbcType="INTEGER" />
+    <result column="weight" property="weight" jdbcType="DOUBLE" />
+    <result column="is_comment" property="isComment" jdbcType="INTEGER" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="news_way" property="newsWay" jdbcType="INTEGER" />
+    <result column="age" property="age" jdbcType="VARCHAR" />
+    <result column="score" property="score" jdbcType="INTEGER" />
+    <result column="times" property="times" jdbcType="INTEGER" />
+  </resultMap>
+  <insert id="insert" parameterType="com.masterchengzi.newsserver.entity.UserBehavior" >
+    insert into user_behavior (user_id, news_id, news_tag,
+      behavior_type, weight, is_comment,
+      address, news_way, age,
+      score, times)
+    values (#{userId,jdbcType=VARCHAR}, #{newsId,jdbcType=VARCHAR}, #{newsTag,jdbcType=VARCHAR},
+      #{behaviorType,jdbcType=INTEGER}, #{weight,jdbcType=DOUBLE}, #{isComment,jdbcType=INTEGER},
+      #{address,jdbcType=VARCHAR}, #{newsWay,jdbcType=INTEGER}, #{age,jdbcType=VARCHAR},
+      #{score,jdbcType=INTEGER}, #{times,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.masterchengzi.newsserver.entity.UserBehavior" >
+    insert into user_behavior
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="newsId != null" >
+        news_id,
+      </if>
+      <if test="newsTag != null" >
+        news_tag,
+      </if>
+      <if test="behaviorType != null" >
+        behavior_type,
+      </if>
+      <if test="weight != null" >
+        weight,
+      </if>
+      <if test="isComment != null" >
+        is_comment,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="newsWay != null" >
+        news_way,
+      </if>
+      <if test="age != null" >
+        age,
+      </if>
+      <if test="score != null" >
+        score,
+      </if>
+      <if test="times != null" >
+        times,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="newsId != null" >
+        #{newsId,jdbcType=VARCHAR},
+      </if>
+      <if test="newsTag != null" >
+        #{newsTag,jdbcType=VARCHAR},
+      </if>
+      <if test="behaviorType != null" >
+        #{behaviorType,jdbcType=INTEGER},
+      </if>
+      <if test="weight != null" >
+        #{weight,jdbcType=DOUBLE},
+      </if>
+      <if test="isComment != null" >
+        #{isComment,jdbcType=INTEGER},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="newsWay != null" >
+        #{newsWay,jdbcType=INTEGER},
+      </if>
+      <if test="age != null" >
+        #{age,jdbcType=VARCHAR},
+      </if>
+      <if test="score != null" >
+        #{score,jdbcType=INTEGER},
+      </if>
+      <if test="times != null" >
+        #{times,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>

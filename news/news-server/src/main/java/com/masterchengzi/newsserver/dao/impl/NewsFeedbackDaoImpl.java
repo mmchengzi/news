@@ -1,0 +1,40 @@
+package com.masterchengzi.newsserver.dao.impl;
+
+import com.masterchengzi.newsserver.dao.NewsFeedbackDao;
+import com.masterchengzi.newsserver.entity.NewsFeedback;
+import com.masterchengzi.newsserver.mapper.NewsFeedbackMapper;
+import org.springframework.stereotype.Repository;
+
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+@Repository
+public class NewsFeedbackDaoImpl implements NewsFeedbackDao {
+	private NewsFeedbackMapper newsFeedbackMapper;
+
+	@Override
+	public List<NewsFeedback> getNewsFeedback(String userid, Date gettime) {
+		Map map = new HashMap();
+		map.put("userid", userid);
+		map.put("gettime", gettime);
+		return newsFeedbackMapper.getNewsFeedback(map);
+	}
+
+	@Override
+	public int delete(String userid) {
+		Map map = new HashMap();
+		map.put("userid", userid);
+		return newsFeedbackMapper.delete(map);
+	}
+
+	@Override
+	public int insert(NewsFeedback record) {
+		return newsFeedbackMapper.insert(record);
+	}
+
+	@Override
+	public int update(NewsFeedback record) {
+		return newsFeedbackMapper.update(record);
+	}
+}

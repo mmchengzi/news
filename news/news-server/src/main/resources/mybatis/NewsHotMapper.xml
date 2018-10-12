@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.masterchengzi.newsserver.mybatis.NewsHotMapper" >
+  <resultMap id="BaseResultMap" type="com.masterchengzi.newsserver.entity.NewsHot" >
+    <result column="news_id" property="newsId" jdbcType="VARCHAR" />
+    <result column="time" property="time" jdbcType="TIMESTAMP" />
+    <result column="image" property="image" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="source" property="source" jdbcType="VARCHAR" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="tag" property="tag" jdbcType="VARCHAR" />
+    <result column="love_times" property="loveTimes" jdbcType="INTEGER" />
+    <result column="read_times" property="readTimes" jdbcType="INTEGER" />
+    <result column="comment_times" property="commentTimes" jdbcType="INTEGER" />
+  </resultMap>
+  <insert id="insert" parameterType="com.masterchengzi.newsserver.entity.NewsHot" >
+    insert into news_hot (news_id, time, image,
+      abstract, source, title,
+      tag, love_times, read_times,
+      comment_times)
+    values (#{newsId,jdbcType=VARCHAR}, #{time,jdbcType=TIMESTAMP}, #{image,jdbcType=VARCHAR},
+      #{remark,jdbcType=VARCHAR}, #{source,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR},
+      #{tag,jdbcType=VARCHAR}, #{loveTimes,jdbcType=INTEGER}, #{readTimes,jdbcType=INTEGER},
+      #{commentTimes,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.masterchengzi.newsserver.entity.NewsHot" >
+    insert into news_hot
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="newsId != null" >
+        news_id,
+      </if>
+      <if test="time != null" >
+        time,
+      </if>
+      <if test="image != null" >
+        image,
+      </if>
+      <if test="abstract != null" >
+        abstract,
+      </if>
+      <if test="source != null" >
+        source,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="tag != null" >
+        tag,
+      </if>
+      <if test="loveTimes != null" >
+        love_times,
+      </if>
+      <if test="readTimes != null" >
+        read_times,
+      </if>
+      <if test="commentTimes != null" >
+        comment_times,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="newsId != null" >
+        #{newsId,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null" >
+        #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="image != null" >
+        #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="abstract != null" >
+        #{abstract,jdbcType=VARCHAR},
+      </if>
+      <if test="source != null" >
+        #{source,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="tag != null" >
+        #{tag,jdbcType=VARCHAR},
+      </if>
+      <if test="loveTimes != null" >
+        #{loveTimes,jdbcType=INTEGER},
+      </if>
+      <if test="readTimes != null" >
+        #{readTimes,jdbcType=INTEGER},
+      </if>
+      <if test="commentTimes != null" >
+        #{commentTimes,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>

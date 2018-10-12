@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.masterchengzi.newsserver.mybatis.GetNewsMapper" >
+  <resultMap id="BaseResultMap" type="com.masterchengzi.newsserver.entity.GetNews" >
+    <id column="news_id" property="newsId" jdbcType="VARCHAR" />
+    <result column="news_link" property="newsLink" jdbcType="VARCHAR" />
+    <result column="source" property="source" jdbcType="VARCHAR" />
+    <result column="time" property="time" jdbcType="TIMESTAMP" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="abstract" property="abstract" jdbcType="VARCHAR" />
+    <result column="tag" property="tag" jdbcType="VARCHAR" />
+    <result column="image" property="image" jdbcType="VARCHAR" />
+    <result column="video" property="video" jdbcType="VARCHAR" />
+    <result column="keyword" property="keyword" jdbcType="VARCHAR" />
+    <result column="is_old" property="isOld" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.masterchengzi.newsserver.entity.GetNewsWithBLOBs" extends="BaseResultMap" >
+    <result column="text_content" property="textContent" jdbcType="LONGVARCHAR" />
+    <result column="html_content" property="htmlContent" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    news_id, news_link, source, time, title, abstract, tag, image, video, keyword, is_old
+  </sql>
+  <sql id="Blob_Column_List" >
+    text_content, html_content
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from get_news
+    where news_id = #{newsId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from get_news
+    where news_id = #{newsId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.masterchengzi.newsserver.entity.GetNewsWithBLOBs" >
+    insert into get_news (news_id, news_link, source,
+      time, title, abstract,
+      tag, image, video,
+      keyword, is_old, text_content,
+      html_content)
+    values (#{newsId,jdbcType=VARCHAR}, #{newsLink,jdbcType=VARCHAR}, #{source,jdbcType=VARCHAR},
+      #{time,jdbcType=TIMESTAMP}, #{title,jdbcType=VARCHAR}, #{abstract,jdbcType=VARCHAR},
+      #{tag,jdbcType=VARCHAR}, #{image,jdbcType=VARCHAR}, #{video,jdbcType=VARCHAR},
+      #{keyword,jdbcType=VARCHAR}, #{isOld,jdbcType=INTEGER}, #{textContent,jdbcType=LONGVARCHAR},
+      #{htmlContent,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.masterchengzi.newsserver.entity.GetNewsWithBLOBs" >
+    insert into get_news
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="newsId != null" >
+        news_id,
+      </if>
+      <if test="newsLink != null" >
+        news_link,
+      </if>
+      <if test="source != null" >
+        source,
+      </if>
+      <if test="time != null" >
+        time,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="abstract != null" >
+        abstract,
+      </if>
+      <if test="tag != null" >
+        tag,
+      </if>
+      <if test="image != null" >
+        image,
+      </if>
+      <if test="video != null" >
+        video,
+      </if>
+      <if test="keyword != null" >
+        keyword,
+      </if>
+      <if test="isOld != null" >
+        is_old,
+      </if>
+      <if test="textContent != null" >
+        text_content,
+      </if>
+      <if test="htmlContent != null" >
+        html_content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="newsId != null" >
+        #{newsId,jdbcType=VARCHAR},
+      </if>
+      <if test="newsLink != null" >
+        #{newsLink,jdbcType=VARCHAR},
+      </if>
+      <if test="source != null" >
+        #{source,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null" >
+        #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="abstract != null" >
+        #{abstract,jdbcType=VARCHAR},
+      </if>
+      <if test="tag != null" >
+        #{tag,jdbcType=VARCHAR},
+      </if>
+      <if test="image != null" >
+        #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="video != null" >
+        #{video,jdbcType=VARCHAR},
+      </if>
+      <if test="keyword != null" >
+        #{keyword,jdbcType=VARCHAR},
+      </if>
+      <if test="isOld != null" >
+        #{isOld,jdbcType=INTEGER},
+      </if>
+      <if test="textContent != null" >
+        #{textContent,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="htmlContent != null" >
+        #{htmlContent,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.masterchengzi.newsserver.entity.GetNewsWithBLOBs" >
+    update get_news
+    <set >
+      <if test="newsLink != null" >
+        news_link = #{newsLink,jdbcType=VARCHAR},
+      </if>
+      <if test="source != null" >
+        source = #{source,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null" >
+        time = #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="abstract != null" >
+        abstract = #{abstract,jdbcType=VARCHAR},
+      </if>
+      <if test="tag != null" >
+        tag = #{tag,jdbcType=VARCHAR},
+      </if>
+      <if test="image != null" >
+        image = #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="video != null" >
+        video = #{video,jdbcType=VARCHAR},
+      </if>
+      <if test="keyword != null" >
+        keyword = #{keyword,jdbcType=VARCHAR},
+      </if>
+      <if test="isOld != null" >
+        is_old = #{isOld,jdbcType=INTEGER},
+      </if>
+      <if test="textContent != null" >
+        text_content = #{textContent,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="htmlContent != null" >
+        html_content = #{htmlContent,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where news_id = #{newsId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.masterchengzi.newsserver.entity.GetNewsWithBLOBs" >
+    update get_news
+    set news_link = #{newsLink,jdbcType=VARCHAR},
+      source = #{source,jdbcType=VARCHAR},
+      time = #{time,jdbcType=TIMESTAMP},
+      title = #{title,jdbcType=VARCHAR},
+      abstract = #{abstract,jdbcType=VARCHAR},
+      tag = #{tag,jdbcType=VARCHAR},
+      image = #{image,jdbcType=VARCHAR},
+      video = #{video,jdbcType=VARCHAR},
+      keyword = #{keyword,jdbcType=VARCHAR},
+      is_old = #{isOld,jdbcType=INTEGER},
+      text_content = #{textContent,jdbcType=LONGVARCHAR},
+      html_content = #{htmlContent,jdbcType=LONGVARCHAR}
+    where news_id = #{newsId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.masterchengzi.newsserver.entity.GetNews" >
+    update get_news
+    set news_link = #{newsLink,jdbcType=VARCHAR},
+      source = #{source,jdbcType=VARCHAR},
+      time = #{time,jdbcType=TIMESTAMP},
+      title = #{title,jdbcType=VARCHAR},
+      abstract = #{abstract,jdbcType=VARCHAR},
+      tag = #{tag,jdbcType=VARCHAR},
+      image = #{image,jdbcType=VARCHAR},
+      video = #{video,jdbcType=VARCHAR},
+      keyword = #{keyword,jdbcType=VARCHAR},
+      is_old = #{isOld,jdbcType=INTEGER}
+    where news_id = #{newsId,jdbcType=VARCHAR}
+  </update>
+</mapper>
