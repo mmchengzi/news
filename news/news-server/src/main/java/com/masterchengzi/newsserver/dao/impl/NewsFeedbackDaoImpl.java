@@ -3,6 +3,7 @@ package com.masterchengzi.newsserver.dao.impl;
 import com.masterchengzi.newsserver.dao.NewsFeedbackDao;
 import com.masterchengzi.newsserver.entity.NewsFeedback;
 import com.masterchengzi.newsserver.mapper.NewsFeedbackMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.Date;
@@ -11,6 +12,7 @@ import java.util.List;
 import java.util.Map;
 @Repository
 public class NewsFeedbackDaoImpl implements NewsFeedbackDao {
+	@Autowired
 	private NewsFeedbackMapper newsFeedbackMapper;
 
 	@Override

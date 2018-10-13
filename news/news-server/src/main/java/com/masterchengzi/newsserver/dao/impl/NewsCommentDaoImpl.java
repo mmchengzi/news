@@ -3,6 +3,7 @@ package com.masterchengzi.newsserver.dao.impl;
 import com.masterchengzi.newsserver.dao.NewsCommentDao;
 import com.masterchengzi.newsserver.entity.NewsComment;
 import com.masterchengzi.newsserver.mapper.NewsCommentMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.HashMap;
@@ -11,6 +12,7 @@ import java.util.Map;
 
 @Repository
 public class NewsCommentDaoImpl implements NewsCommentDao {
+	@Autowired
 	private NewsCommentMapper newsCommentMapper;
 
 	@Override

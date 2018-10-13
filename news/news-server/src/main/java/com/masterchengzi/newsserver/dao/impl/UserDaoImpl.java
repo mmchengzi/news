@@ -28,16 +28,20 @@ public class UserDaoImpl implements UserDao {
 
 	@Override
 	public int delete(String userId, String name, String phone) {
-		return 0;
+		Map map = new HashMap();
+		map.put("userId", userId);
+		map.put("name", name);
+		map.put("phone", phone);
+		return userMapper.delete(map);
 	}
 
 	@Override
 	public int insert(User record) {
-		return 0;
+		return userMapper.insert(record);
 	}
 
 	@Override
 	public int update(User record) {
-		return 0;
+		return userMapper.update(record);
 	}
 }
