@@ -5,27 +5,34 @@
     <result column="user_id" property="userId" jdbcType="VARCHAR" />
     <result column="tags" property="tags" jdbcType="VARCHAR" />
   </resultMap>
+  <sql id="Base_Column_List" >
+   user_id, tags
+  </sql>
+  <select id="getUserLoveTag" resultMap="BaseResultMap" parameterType="Map" >
+    select
+    <include refid="Base_Column_List" />
+    from user_love_tag
+    <where>
+      <if test="userId != null">
+        AND user_id = #{userId}
+      </if>
+    </where>
+  </select>
+  <delete id="delete" parameterType="Map" >
+    delete from user_love_tag
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
   <insert id="insert" parameterType="com.masterchengzi.newsserver.entity.UserLoveTag" >
     insert into user_love_tag (user_id, tags)
     values (#{userId,jdbcType=VARCHAR}, #{tags,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.masterchengzi.newsserver.entity.UserLoveTag" >
-    insert into user_love_tag
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="userId != null" >
-        user_id,
-      </if>
+  <update id="update" parameterType="com.masterchengzi.newsserver.entity.UserLoveTag" >
+    update user_love_tag
+    <set >
       <if test="tags != null" >
-        tags,
+        tags = #{tags,jdbcType=VARCHAR},
       </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="userId != null" >
-        #{userId,jdbcType=VARCHAR},
-      </if>
-      <if test="tags != null" >
-        #{tags,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
+    </set>
+    where  user_id = #{userId}
+  </update>
 </mapper>

@@ -22,6 +22,34 @@
     <result column="news_history" property="newsHistory" jdbcType="DOUBLE" />
     <result column="news_food" property="newsFood" jdbcType="DOUBLE" />
   </resultMap>
+
+  <sql id="Base_Column_List" >
+      user_id, news_society, news_entertainment,
+      news_tech, news_car, news_sports,
+      news_finance, news_military, news_world,
+      news_fashion, news_travel, news_discovery,
+      news_baby, news_regimen, news_story,
+      news_essay, news_game, news_history,
+      news_food
+  </sql>
+  <select id="getUserTagDeep" resultMap="BaseResultMap" parameterType="Map" >
+    select
+    <include refid="Base_Column_List" />
+    from user_tag_deep
+    <where>
+      <if test="userId != null">
+         user_id = #{userId,jdbcType=VARCHAR}
+      </if>
+    </where>
+  </select>
+  <delete id="delete" parameterType="Map" >
+    delete from user_tag_deep
+    <where>
+      <if test="userId != null">
+        AND user_id = #{userId,jdbcType=VARCHAR}
+      </if>
+    </where>
+  </delete>
   <insert id="insert" parameterType="com.masterchengzi.newsserver.entity.UserTagDeep" >
     insert into user_tag_deep (user_id, news_society, news_entertainment,
       news_tech, news_car, news_sports,
@@ -38,125 +66,64 @@
       #{newsEssay,jdbcType=DOUBLE}, #{newsGame,jdbcType=DOUBLE}, #{newsHistory,jdbcType=DOUBLE},
       #{newsFood,jdbcType=DOUBLE})
   </insert>
-  <insert id="insertSelective" parameterType="com.masterchengzi.newsserver.entity.UserTagDeep" >
-    insert into user_tag_deep
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="userId != null" >
-        user_id,
-      </if>
+  <update id="update" parameterType="com.masterchengzi.newsserver.entity.UserTagDeep" >
+    update user_tag_deep
+    <set >
       <if test="newsSociety != null" >
-        news_society,
+        news_society = #{newsSociety,jdbcType=DOUBLE},
       </if>
       <if test="newsEntertainment != null" >
-        news_entertainment,
+        news_entertainment= #{newsEntertainment,jdbcType=DOUBLE},
       </if>
       <if test="newsTech != null" >
-        news_tech,
+        news_tech = #{newsTech,jdbcType=DOUBLE},
       </if>
       <if test="newsCar != null" >
-        news_car,
+        news_car = #{newsCar,jdbcType=DOUBLE},
       </if>
       <if test="newsSports != null" >
-        news_sports,
+        news_sports = #{newsSports,jdbcType=DOUBLE},
       </if>
       <if test="newsFinance != null" >
-        news_finance,
+        news_finance = #{newsFinance,jdbcType=DOUBLE},
       </if>
       <if test="newsMilitary != null" >
-        news_military,
+        news_military = #{newsMilitary,jdbcType=DOUBLE},
       </if>
       <if test="newsWorld != null" >
-        news_world,
+        news_world = #{newsWorld,jdbcType=DOUBLE},
       </if>
       <if test="newsFashion != null" >
-        news_fashion,
+        news_fashion = #{newsFashion,jdbcType=DOUBLE},
       </if>
       <if test="newsTravel != null" >
-        news_travel,
+        news_travel = #{newsTravel,jdbcType=DOUBLE},
       </if>
       <if test="newsDiscovery != null" >
-        news_discovery,
+        news_discovery = #{newsDiscovery,jdbcType=DOUBLE},
       </if>
       <if test="newsBaby != null" >
-        news_baby,
+        news_baby = #{newsBaby,jdbcType=DOUBLE},
       </if>
       <if test="newsRegimen != null" >
-        news_regimen,
+        news_regimen = #{newsRegimen,jdbcType=DOUBLE},
       </if>
       <if test="newsStory != null" >
-        news_story,
+        news_story = #{newsStory,jdbcType=DOUBLE},
       </if>
       <if test="newsEssay != null" >
-        news_essay,
+        news_essay = #{newsEssay,jdbcType=DOUBLE},
       </if>
       <if test="newsGame != null" >
-        news_game,
+        news_game = #{newsGame,jdbcType=DOUBLE},
       </if>
       <if test="newsHistory != null" >
-        news_history,
+        news_history = #{newsHistory,jdbcType=DOUBLE},
       </if>
       <if test="newsFood != null" >
-        news_food,
+        news_food = #{newsFood,jdbcType=DOUBLE},
       </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="userId != null" >
-        #{userId,jdbcType=VARCHAR},
-      </if>
-      <if test="newsSociety != null" >
-        #{newsSociety,jdbcType=DOUBLE},
-      </if>
-      <if test="newsEntertainment != null" >
-        #{newsEntertainment,jdbcType=DOUBLE},
-      </if>
-      <if test="newsTech != null" >
-        #{newsTech,jdbcType=DOUBLE},
-      </if>
-      <if test="newsCar != null" >
-        #{newsCar,jdbcType=DOUBLE},
-      </if>
-      <if test="newsSports != null" >
-        #{newsSports,jdbcType=DOUBLE},
-      </if>
-      <if test="newsFinance != null" >
-        #{newsFinance,jdbcType=DOUBLE},
-      </if>
-      <if test="newsMilitary != null" >
-        #{newsMilitary,jdbcType=DOUBLE},
-      </if>
-      <if test="newsWorld != null" >
-        #{newsWorld,jdbcType=DOUBLE},
-      </if>
-      <if test="newsFashion != null" >
-        #{newsFashion,jdbcType=DOUBLE},
-      </if>
-      <if test="newsTravel != null" >
-        #{newsTravel,jdbcType=DOUBLE},
-      </if>
-      <if test="newsDiscovery != null" >
-        #{newsDiscovery,jdbcType=DOUBLE},
-      </if>
-      <if test="newsBaby != null" >
-        #{newsBaby,jdbcType=DOUBLE},
-      </if>
-      <if test="newsRegimen != null" >
-        #{newsRegimen,jdbcType=DOUBLE},
-      </if>
-      <if test="newsStory != null" >
-        #{newsStory,jdbcType=DOUBLE},
-      </if>
-      <if test="newsEssay != null" >
-        #{newsEssay,jdbcType=DOUBLE},
-      </if>
-      <if test="newsGame != null" >
-        #{newsGame,jdbcType=DOUBLE},
-      </if>
-      <if test="newsHistory != null" >
-        #{newsHistory,jdbcType=DOUBLE},
-      </if>
-      <if test="newsFood != null" >
-        #{newsFood,jdbcType=DOUBLE},
-      </if>
-    </trim>
-  </insert>
+    </set>
+    where user_id = #{userId,jdbcType=VARCHAR}
+  </update>
 </mapper>

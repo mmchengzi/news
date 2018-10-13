@@ -11,15 +11,41 @@
   <sql id="Base_Column_List" >
     user_id, phone, name, passwd, time
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+  <select id="getUser" resultMap="BaseResultMap" parameterType="Map" >
     select
     <include refid="Base_Column_List" />
     from user
-    where user_id = #{userId,jdbcType=VARCHAR}
+    <where>
+      <if test="userId != null">
+       AND user_id = #{userId,jdbcType=VARCHAR}
+      </if>
+      <if test="name != null">
+        AND name = #{name,jdbcType=VARCHAR}
+      </if>
+      <if test="phone != null">
+        AND phone = #{phone,jdbcType=VARCHAR}
+      </if>
+      <if test="beginDate != null and beginDate != ''">
+        AND time <![CDATA[>=]]> #{beginDate}
+      </if>
+      <if test="endDate != null and endDate != ''">
+        AND time <![CDATA[<=]]>#{endDate}
+      </if>
+    </where>
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+  <delete id="delete" parameterType="Map" >
     delete from user
-    where user_id = #{userId,jdbcType=VARCHAR}
+    <where>
+      <if test="userId != null">
+        AND user_id = #{userId,jdbcType=VARCHAR}
+      </if>
+      <if test="name != null">
+        AND name = #{name,jdbcType=VARCHAR}
+      </if>
+      <if test="phone != null">
+        AND phone = #{phone,jdbcType=VARCHAR}
+      </if>
+    </where>
   </delete>
   <insert id="insert" parameterType="com.masterchengzi.newsserver.entity.User" >
     insert into user (user_id, phone, name,
@@ -27,44 +53,7 @@
     values (#{userId,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR},
       #{passwd,jdbcType=VARCHAR}, #{time,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="com.masterchengzi.newsserver.entity.User" >
-    insert into user
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="userId != null" >
-        user_id,
-      </if>
-      <if test="phone != null" >
-        phone,
-      </if>
-      <if test="name != null" >
-        name,
-      </if>
-      <if test="passwd != null" >
-        passwd,
-      </if>
-      <if test="time != null" >
-        time,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="userId != null" >
-        #{userId,jdbcType=VARCHAR},
-      </if>
-      <if test="phone != null" >
-        #{phone,jdbcType=VARCHAR},
-      </if>
-      <if test="name != null" >
-        #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="passwd != null" >
-        #{passwd,jdbcType=VARCHAR},
-      </if>
-      <if test="time != null" >
-        #{time,jdbcType=TIMESTAMP},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.masterchengzi.newsserver.entity.User" >
+  <update id="update" parameterType="com.masterchengzi.newsserver.entity.User" >
     update user
     <set >
       <if test="phone != null" >
@@ -80,14 +69,6 @@
         time = #{time,jdbcType=TIMESTAMP},
       </if>
     </set>
-    where user_id = #{userId,jdbcType=VARCHAR}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.masterchengzi.newsserver.entity.User" >
-    update user
-    set phone = #{phone,jdbcType=VARCHAR},
-      name = #{name,jdbcType=VARCHAR},
-      passwd = #{passwd,jdbcType=VARCHAR},
-      time = #{time,jdbcType=TIMESTAMP}
     where user_id = #{userId,jdbcType=VARCHAR}
   </update>
 </mapper>

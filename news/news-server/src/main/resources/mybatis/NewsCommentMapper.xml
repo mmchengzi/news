@@ -5,27 +5,37 @@
     <result column="news_id" property="newsId" jdbcType="VARCHAR" />
     <result column="comment" property="comment" jdbcType="VARCHAR" />
   </resultMap>
+  <sql id="Base_Column_List" >
+    news_id, comment
+  </sql>
+  <select id="getNAdmin" resultMap="BaseResultMap" parameterType="Map" >
+    select
+    <include refid="Base_Column_List" />
+    from news_comment
+    <where>
+      <if test="newsId != null">
+        AND news_id = #{newsId}
+      </if>
+    </where>
+  </select>
+  <delete id="delete" parameterType="Map" >
+    delete from news_comment
+    where news_id = #{newsId,jdbcType=VARCHAR}
+  </delete>
   <insert id="insert" parameterType="com.masterchengzi.newsserver.entity.NewsComment" >
     insert into news_comment (news_id, comment)
     values (#{newsId,jdbcType=VARCHAR}, #{comment,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.masterchengzi.newsserver.entity.NewsComment" >
-    insert into news_comment
-    <trim prefix="(" suffix=")" suffixOverrides="," >
+  <update id="update" parameterType="com.masterchengzi.newsserver.entity.NewsComment" >
+    update news_comment
+    <set >
       <if test="newsId != null" >
-        news_id,
+        news_id = #{newsId,jdbcType=VARCHAR},
       </if>
       <if test="comment != null" >
-        comment,
+        comment = #{comment,jdbcType=VARCHAR},
       </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="newsId != null" >
-        #{newsId,jdbcType=VARCHAR},
-      </if>
-      <if test="comment != null" >
-        #{comment,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
+    </set>
+    where news_id = #{newsId,jdbcType=INTEGER}
+  </update>
 </mapper>

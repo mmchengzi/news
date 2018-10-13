@@ -13,8 +13,5 @@ public interface GetNewsMapper {
 	int delete(Map<String, Object> map);
 
 	int insert(GetNewsWithBLOBs record);
-
-	int updateWithBLOBs(GetNewsWithBLOBs record);
-
 	int update(GetNewsWithBLOBs record);
 }

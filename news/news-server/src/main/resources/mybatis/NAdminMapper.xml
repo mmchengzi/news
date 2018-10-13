@@ -9,13 +9,20 @@
   <sql id="Base_Column_List" >
     id, name, pass
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  <select id="getNAdmin" resultMap="BaseResultMap" parameterType="Map" >
     select
     <include refid="Base_Column_List" />
     from n_admin
-    where id = #{id,jdbcType=INTEGER}
+    <where>
+      <if test="id != null">
+        AND id = #{id}
+      </if>
+      <if test="name!= null">
+        AND name like #{name}
+      </if>
+    </where>
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+  <delete id="delete" parameterType="Map" >
     delete from n_admin
     where id = #{id,jdbcType=INTEGER}
   </delete>
@@ -25,32 +32,8 @@
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{pass,jdbcType=VARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.masterchengzi.newsserver.entity.NAdmin" >
-    insert into n_admin
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        id,
-      </if>
-      <if test="name != null" >
-        name,
-      </if>
-      <if test="pass != null" >
-        pass,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        #{id,jdbcType=INTEGER},
-      </if>
-      <if test="name != null" >
-        #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="pass != null" >
-        #{pass,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.masterchengzi.newsserver.entity.NAdmin" >
+
+  <update id="update" parameterType="com.masterchengzi.newsserver.entity.NAdmin" >
     update n_admin
     <set >
       <if test="name != null" >
@@ -60,12 +43,6 @@
         pass = #{pass,jdbcType=VARCHAR},
       </if>
     </set>
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.masterchengzi.newsserver.entity.NAdmin" >
-    update n_admin
-    set name = #{name,jdbcType=VARCHAR},
-      pass = #{pass,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

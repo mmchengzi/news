@@ -13,81 +13,32 @@
     <result column="read_times" property="readTimes" jdbcType="INTEGER" />
     <result column="comment_times" property="commentTimes" jdbcType="INTEGER" />
   </resultMap>
-  <insert id="insert" parameterType="com.masterchengzi.newsserver.entity.NewsHot" >
-    insert into news_hot (news_id, time, image,
+  <sql id="Base_Column_List" >
+    news_id, time, image,
       abstract, source, title,
       tag, love_times, read_times,
-      comment_times)
-    values (#{newsId,jdbcType=VARCHAR}, #{time,jdbcType=TIMESTAMP}, #{image,jdbcType=VARCHAR},
-      #{remark,jdbcType=VARCHAR}, #{source,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR},
-      #{tag,jdbcType=VARCHAR}, #{loveTimes,jdbcType=INTEGER}, #{readTimes,jdbcType=INTEGER},
-      #{commentTimes,jdbcType=INTEGER})
-  </insert>
-  <insert id="insertSelective" parameterType="com.masterchengzi.newsserver.entity.NewsHot" >
-    insert into news_hot
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="newsId != null" >
-        news_id,
+      comment_times
+  </sql>
+  <select id="getNewsHot" resultMap="BaseResultMap" parameterType="Map" >
+    select
+    <include refid="Base_Column_List" />
+    from news_hot
+    <where>
+      <if test="newsId != null">
+        AND news_id = #{newsId}
       </if>
-      <if test="time != null" >
-        time,
+      <if test="beginDate != null and beginDate != ''">
+        AND time <![CDATA[>=]]> #{beginDate}
       </if>
-      <if test="image != null" >
-        image,
+      <if test="endDate != null and endDate != ''">
+        AND time <![CDATA[<=]]>#{endDate}
       </if>
-      <if test="abstract != null" >
-        abstract,
+      <if test="title != null">
+        AND title = #{title}
       </if>
-      <if test="source != null" >
-        source,
+      <if test="tag != null">
+        AND tag = #{tag}
       </if>
-      <if test="title != null" >
-        title,
-      </if>
-      <if test="tag != null" >
-        tag,
-      </if>
-      <if test="loveTimes != null" >
-        love_times,
-      </if>
-      <if test="readTimes != null" >
-        read_times,
-      </if>
-      <if test="commentTimes != null" >
-        comment_times,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="newsId != null" >
-        #{newsId,jdbcType=VARCHAR},
-      </if>
-      <if test="time != null" >
-        #{time,jdbcType=TIMESTAMP},
-      </if>
-      <if test="image != null" >
-        #{image,jdbcType=VARCHAR},
-      </if>
-      <if test="abstract != null" >
-        #{abstract,jdbcType=VARCHAR},
-      </if>
-      <if test="source != null" >
-        #{source,jdbcType=VARCHAR},
-      </if>
-      <if test="title != null" >
-        #{title,jdbcType=VARCHAR},
-      </if>
-      <if test="tag != null" >
-        #{tag,jdbcType=VARCHAR},
-      </if>
-      <if test="loveTimes != null" >
-        #{loveTimes,jdbcType=INTEGER},
-      </if>
-      <if test="readTimes != null" >
-        #{readTimes,jdbcType=INTEGER},
-      </if>
-      <if test="commentTimes != null" >
-        #{commentTimes,jdbcType=INTEGER},
-      </if>
-    </trim>
-  </insert>
+    </where>
+  </select>
 </mapper>

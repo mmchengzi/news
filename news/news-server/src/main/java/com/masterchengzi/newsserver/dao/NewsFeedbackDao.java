@@ -9,7 +9,7 @@ import java.util.Map;
 
 public interface NewsFeedbackDao {
 
-	List<NewsFeedback> getNewsFeedback(String userid,Date gettime);
+	List<NewsFeedback> getNewsFeedback(String userId,Date gettime);
 
 	int delete(String userid);
 

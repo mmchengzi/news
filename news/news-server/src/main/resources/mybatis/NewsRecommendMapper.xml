@@ -7,30 +7,34 @@
   <resultMap id="ResultMapWithBLOBs" type="com.masterchengzi.newsserver.entity.NewsRecommend" extends="BaseResultMap" >
     <result column="news_score" property="newsScore" jdbcType="LONGVARCHAR" />
   </resultMap>
-  <sql id="Blob_Column_List" >
-    news_score
+  <sql id="Base_Column_List" >
+   user_id, news_score
   </sql>
+  <select id="getNewsRecommend" resultMap="BaseResultMap" parameterType="Map" >
+    select
+    <include refid="Base_Column_List" />
+    from news_recommend
+    <where>
+      <if test="userID != null">
+        AND user_id = #{userId}
+      </if>
+    </where>
+  </select>
+  <delete id="delete" parameterType="Map" >
+    delete from news_recommend
+    where user_id = #{userId}
+  </delete>
   <insert id="insert" parameterType="com.masterchengzi.newsserver.entity.NewsRecommend" >
     insert into news_recommend (user_id, news_score)
     values (#{userId,jdbcType=VARCHAR}, #{newsScore,jdbcType=LONGVARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.masterchengzi.newsserver.entity.NewsRecommend" >
-    insert into news_recommend
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="userId != null" >
-        user_id,
-      </if>
+  <update id="update" parameterType="com.masterchengzi.newsserver.entity.NewsRecommend" >
+    update news_recommend
+    <set >
       <if test="newsScore != null" >
-        news_score,
+        news_score = #{newsScore,jdbcType=LONGVARCHAR},
       </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="userId != null" >
-        #{userId,jdbcType=VARCHAR},
-      </if>
-      <if test="newsScore != null" >
-        #{newsScore,jdbcType=LONGVARCHAR},
-      </if>
-    </trim>
-  </insert>
+    </set>
+    where user_id = #{userId,jdbcType=INTEGER}
+  </update>
 </mapper>

@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface UserDao {
 
-	List<User> getUser(String userId, String name, String phone, Date time);
+	List<User> getUser(String userId, String name, String phone, Date benginDate,Date endDate);
 	int delete(String userId, String name, String phone);
 
 	int insert(User record);

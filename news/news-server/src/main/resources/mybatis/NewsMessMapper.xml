@@ -8,47 +8,52 @@
     <result column="love_times" property="loveTimes" jdbcType="INTEGER" />
     <result column="comment_times" property="commentTimes" jdbcType="INTEGER" />
   </resultMap>
+  <sql id="Base_Column_List" >
+  news_id, tag, read_times,comment_times
+  </sql>
+  <select id="getNewsMess" resultMap="BaseResultMap" parameterType="Map" >
+    select
+    <include refid="Base_Column_List" />
+    from news_mess
+    <where>
+      <if test="newsId != null">
+        AND news_id = #{newsId}
+      </if>
+      <if test="tag != null">
+        AND tag = #{tag}
+      </if>
+    </where>
+  </select>
+  <delete id="delete" parameterType="Map" >
+    delete from news_mess
+    where news_id = #{newsId}
+  </delete>
   <insert id="insert" parameterType="com.masterchengzi.newsserver.entity.NewsMess" >
     insert into news_mess (news_id, tag, read_times,
-      love_times, comment_times)
+    love_times, comment_times)
     values (#{newsId,jdbcType=VARCHAR}, #{tag,jdbcType=VARCHAR}, #{readTimes,jdbcType=INTEGER},
-      #{loveTimes,jdbcType=INTEGER}, #{commentTimes,jdbcType=INTEGER})
+    #{loveTimes,jdbcType=INTEGER}, #{commentTimes,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="com.masterchengzi.newsserver.entity.NewsMess" >
-    insert into news_mess
-    <trim prefix="(" suffix=")" suffixOverrides="," >
+
+  <update id="update" parameterType="com.masterchengzi.newsserver.entity.NewsMess" >
+    update news_mess
+    <set >
       <if test="newsId != null" >
-        news_id,
+        news_id = #{newsId,jdbcType=VARCHAR},
       </if>
       <if test="tag != null" >
-        tag,
+        tag = #{tag,jdbcType=VARCHAR},
       </if>
       <if test="readTimes != null" >
-        read_times,
+        read_times = #{readTimes,jdbcType=INTEGER},
       </if>
       <if test="loveTimes != null" >
-        love_times,
+        love_times = #{loveTimes,jdbcType=INTEGER},
       </if>
       <if test="commentTimes != null" >
-        comment_times,
+        comment_times = #{commentTimes,jdbcType=INTEGER},
       </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="newsId != null" >
-        #{newsId,jdbcType=VARCHAR},
-      </if>
-      <if test="tag != null" >
-        #{tag,jdbcType=VARCHAR},
-      </if>
-      <if test="readTimes != null" >
-        #{readTimes,jdbcType=INTEGER},
-      </if>
-      <if test="loveTimes != null" >
-        #{loveTimes,jdbcType=INTEGER},
-      </if>
-      <if test="commentTimes != null" >
-        #{commentTimes,jdbcType=INTEGER},
-      </if>
-    </trim>
-  </insert>
+    </set>
+    where news_id = #{newsId,jdbcType=INTEGER}
+  </update>
 </mapper>

@@ -9,6 +9,6 @@ import java.util.List;
 import java.util.Map;
 
 public interface NewsHotDao {
-	List<NewsHot> getNewsHot(String newsId, Date time, String title ,String tag);
+	List<NewsHot> getNewsHot(String newsId, Date BeginDate,Date EndDate, String title ,String tag);
 
 }

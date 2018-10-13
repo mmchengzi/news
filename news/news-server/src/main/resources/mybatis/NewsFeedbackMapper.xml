@@ -9,55 +9,52 @@
     <result column="replyTime" property="replytime" jdbcType="TIMESTAMP" />
     <result column="isReply" property="isreply" jdbcType="INTEGER" />
   </resultMap>
+  <sql id="Base_Column_List" >
+    user_id, feedback,getTime,reply,replyTime,isReply
+  </sql>
+  <select id="getNewsFeedback" resultMap="BaseResultMap" parameterType="Map" >
+    select
+    <include refid="Base_Column_List" />
+    from news_feedback
+    <where>
+      <if test="userId != null">
+        AND user_id = #{userId}
+      </if>
+      <if test="gettime != null">
+        AND getTime = #{gettime}
+      </if>
+    </where>
+  </select>
+  <delete id="delete" parameterType="Map" >
+    delete from news_feedback
+    where user_id = #{userId}
+  </delete>
   <insert id="insert" parameterType="com.masterchengzi.newsserver.entity.NewsFeedback" >
-    insert into news_feedback (user_id, feedback, getTime,
-      reply, replyTime, isReply
-      )
-    values (#{userId,jdbcType=VARCHAR}, #{feedback,jdbcType=VARCHAR}, #{gettime,jdbcType=TIMESTAMP},
-      #{reply,jdbcType=VARCHAR}, #{replytime,jdbcType=TIMESTAMP}, #{isreply,jdbcType=INTEGER}
-      )
+    insert into news_feedback (user_id, feedback,getTime,reply,replyTime,isReply)
+    values (#{userId,jdbcType=VARCHAR}, #{feedback,jdbcType=VARCHAR},#{gettime,jdbcType=TIMESTAMP}, #{reply,jdbcType=VARCHAR},#{replytime,jdbcType=TIMESTAMP}, #{isreply,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="com.masterchengzi.newsserver.entity.NewsFeedback" >
-    insert into news_feedback
-    <trim prefix="(" suffix=")" suffixOverrides="," >
+  <update id="update" parameterType="com.masterchengzi.newsserver.entity.NewsFeedback" >
+    update news_feedback
+    <set >
       <if test="userId != null" >
-        user_id,
+        user_id = #{userId,jdbcType=VARCHAR},
       </if>
       <if test="feedback != null" >
-        feedback,
+        feedback = #{feedback,jdbcType=VARCHAR},
       </if>
       <if test="gettime != null" >
-        getTime,
+        getTime = #{gettime,jdbcType=TIMESTAMP},
       </if>
       <if test="reply != null" >
-        reply,
+        reply = #{reply,jdbcType=VARCHAR},
       </if>
       <if test="replytime != null" >
-        replyTime,
+        replyTime = #{replytime,jdbcType=TIMESTAMP},
       </if>
       <if test="isreply != null" >
-        isReply,
+        isReply = #{isreply,jdbcType=INTEGER},
       </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="userId != null" >
-        #{userId,jdbcType=VARCHAR},
-      </if>
-      <if test="feedback != null" >
-        #{feedback,jdbcType=VARCHAR},
-      </if>
-      <if test="gettime != null" >
-        #{gettime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="reply != null" >
-        #{reply,jdbcType=VARCHAR},
-      </if>
-      <if test="replytime != null" >
-        #{replytime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="isreply != null" >
-        #{isreply,jdbcType=INTEGER},
-      </if>
-    </trim>
-  </insert>
+    </set>
+    where news_id = #{newsId,jdbcType=INTEGER}
+  </update>
 </mapper>

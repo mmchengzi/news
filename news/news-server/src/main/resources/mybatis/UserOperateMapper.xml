@@ -8,47 +8,53 @@
     <result column="time" property="time" jdbcType="TIMESTAMP" />
     <result column="is_love" property="isLove" jdbcType="INTEGER" />
   </resultMap>
+  <sql id="Base_Column_List" >
+   user_id, news_id, comment,
+      time, is_love
+  </sql>
+  <select id="getUserOperate" resultMap="BaseResultMap" parameterType="Map" >
+    select
+    <include refid="Base_Column_List" />
+    from user_operate
+    <where>
+      <if test="userId != null">
+        AND user_id = #{userId,jdbcType=VARCHAR}
+      </if>
+      <if test="newsId != null">
+        AND news_id = #{newsId,jdbcType=VARCHAR}
+      </if>
+    </where>
+  </select>
+  <delete id="delete" parameterType="Map" >
+    delete from user_operate
+    <where>
+      <if test="userId != null">
+        AND user_id = #{userId,jdbcType=VARCHAR}
+      </if>
+      <if test="newsId != null">
+        AND news_id = #{newsId,jdbcType=VARCHAR}
+      </if>
+    </where>
+  </delete>
   <insert id="insert" parameterType="com.masterchengzi.newsserver.entity.UserOperate" >
     insert into user_operate (user_id, news_id, comment,
       time, is_love)
     values (#{userId,jdbcType=VARCHAR}, #{newsId,jdbcType=VARCHAR}, #{comment,jdbcType=VARCHAR},
       #{time,jdbcType=TIMESTAMP}, #{isLove,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="com.masterchengzi.newsserver.entity.UserOperate" >
-    insert into user_operate
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="userId != null" >
-        user_id,
-      </if>
-      <if test="newsId != null" >
-        news_id,
-      </if>
+  <update id="update" parameterType="com.masterchengzi.newsserver.entity.UserOperate" >
+    update user_operate
+    <set >
       <if test="comment != null" >
-        comment,
+        comment = #{comment,jdbcType=VARCHAR},
       </if>
       <if test="time != null" >
-        time,
+        time = #{time,jdbcType=TIMESTAMP},
       </if>
       <if test="isLove != null" >
-        is_love,
+        is_love = #{isLove,jdbcType=INTEGER},
       </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="userId != null" >
-        #{userId,jdbcType=VARCHAR},
-      </if>
-      <if test="newsId != null" >
-        #{newsId,jdbcType=VARCHAR},
-      </if>
-      <if test="comment != null" >
-        #{comment,jdbcType=VARCHAR},
-      </if>
-      <if test="time != null" >
-        #{time,jdbcType=TIMESTAMP},
-      </if>
-      <if test="isLove != null" >
-        #{isLove,jdbcType=INTEGER},
-      </if>
-    </trim>
-  </insert>
+    </set>
+    where user_id = #{userId,jdbcType=VARCHAR}
+  </update>
 </mapper>

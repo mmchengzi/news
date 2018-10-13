@@ -14,6 +14,39 @@
     <result column="score" property="score" jdbcType="INTEGER" />
     <result column="times" property="times" jdbcType="INTEGER" />
   </resultMap>
+  <sql id="Base_Column_List" >
+    user_id, news_id, news_tag,
+      behavior_type, weight, is_comment,
+      address, news_way, age,
+      score, times
+  </sql>
+  <select id="getUserBehavior" resultMap="BaseResultMap" parameterType="Map" >
+    select
+    <include refid="Base_Column_List" />
+    from user_behavior
+    <where>
+      <if test="userId != null">
+        AND user_id = #{userId}
+      </if>
+      <if test="userId != null">
+        AND news_id = #{userId}
+      </if>
+      <if test="newsTag != null">
+        AND news_tag = #{newsTag}
+      </if>
+    </where>
+  </select>
+  <delete id="delete" parameterType="Map" >
+    delete from user_behavior
+    <where>
+      <if test="userId != null">
+        AND user_id = #{userId}
+      </if>
+      <if test="userId != null">
+        AND news_id = #{userId}
+      </if>
+    </where>
+  </delete>
   <insert id="insert" parameterType="com.masterchengzi.newsserver.entity.UserBehavior" >
     insert into user_behavior (user_id, news_id, news_tag,
       behavior_type, weight, is_comment,
@@ -24,77 +57,44 @@
       #{address,jdbcType=VARCHAR}, #{newsWay,jdbcType=INTEGER}, #{age,jdbcType=VARCHAR},
       #{score,jdbcType=INTEGER}, #{times,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="com.masterchengzi.newsserver.entity.UserBehavior" >
-    insert into user_behavior
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="userId != null" >
-        user_id,
-      </if>
-      <if test="newsId != null" >
-        news_id,
-      </if>
+  <update id="update" parameterType="com.masterchengzi.newsserver.entity.UserBehavior" >
+    update user_behavior
+    <set >
       <if test="newsTag != null" >
-        news_tag,
+        news_tag= #{newsTag,jdbcType=VARCHAR},
       </if>
       <if test="behaviorType != null" >
-        behavior_type,
+        behavior_type #{behaviorType,jdbcType=INTEGER},
       </if>
       <if test="weight != null" >
-        weight,
+        weight #{weight,jdbcType=DOUBLE},
       </if>
       <if test="isComment != null" >
-        is_comment,
+        is_comment #{isComment,jdbcType=INTEGER},
       </if>
       <if test="address != null" >
-        address,
+        address #{address,jdbcType=VARCHAR},
       </if>
       <if test="newsWay != null" >
-        news_way,
+        news_way #{newsWay,jdbcType=INTEGER},
       </if>
       <if test="age != null" >
-        age,
+        age #{age,jdbcType=VARCHAR},
       </if>
       <if test="score != null" >
-        score,
+        score #{score,jdbcType=INTEGER},
       </if>
       <if test="times != null" >
-        times,
+        times #{times,jdbcType=INTEGER},
       </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="userId != null" >
-        #{userId,jdbcType=VARCHAR},
+    </set>
+    <where>
+      <if test="userId != null">
+        AND user_id = #{userId}
       </if>
-      <if test="newsId != null" >
-        #{newsId,jdbcType=VARCHAR},
+      <if test="userId != null">
+        AND news_id = #{userId}
       </if>
-      <if test="newsTag != null" >
-        #{newsTag,jdbcType=VARCHAR},
-      </if>
-      <if test="behaviorType != null" >
-        #{behaviorType,jdbcType=INTEGER},
-      </if>
-      <if test="weight != null" >
-        #{weight,jdbcType=DOUBLE},
-      </if>
-      <if test="isComment != null" >
-        #{isComment,jdbcType=INTEGER},
-      </if>
-      <if test="address != null" >
-        #{address,jdbcType=VARCHAR},
-      </if>
-      <if test="newsWay != null" >
-        #{newsWay,jdbcType=INTEGER},
-      </if>
-      <if test="age != null" >
-        #{age,jdbcType=VARCHAR},
-      </if>
-      <if test="score != null" >
-        #{score,jdbcType=INTEGER},
-      </if>
-      <if test="times != null" >
-        #{times,jdbcType=INTEGER},
-      </if>
-    </trim>
-  </insert>
+    </where>
+  </update>
 </mapper>

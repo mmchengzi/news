@@ -17,14 +17,15 @@ public class GetNewsDaoImpl implements GetNewsDao {
 	GetNewsMapper getNewsMapper;
 
 	@Override
-	public List<GetNewsWithBLOBs> getGetNews(String newsId, String title, String keyword, String tag, int isOld, Date time) {
+	public List<GetNewsWithBLOBs> getGetNews(String newsId, String title, String keyword, String tag, int isOld, Date beginDate,Date endDate) {
 		Map map = new HashMap();
 		map.put("newsId", newsId);
 		map.put("title", title);
 		map.put("keyword", keyword);
 		map.put("tag", tag);
 		map.put("isOld", isOld);
-		map.put("time", time);
+		map.put("beginDate", beginDate);
+		map.put("endDate", endDate);
 		return getNewsMapper.getGetNews(map);
 	}
 
@@ -39,12 +40,6 @@ public class GetNewsDaoImpl implements GetNewsDao {
 	public int insert(GetNewsWithBLOBs record) {
 		return getNewsMapper.insert(record);
 	}
-
-	@Override
-	public int updateWithBLOBs(GetNewsWithBLOBs record) {
-		return getNewsMapper.updateWithBLOBs(record);
-	}
-
 	@Override
 	public int update(GetNewsWithBLOBs record) {
 		return getNewsMapper.update(record);
