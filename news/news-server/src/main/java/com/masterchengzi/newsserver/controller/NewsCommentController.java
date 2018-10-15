@@ -21,7 +21,7 @@ import javax.servlet.http.HttpServletRequest;
 
 @RestController
 @Log
-@RequestMapping("NAdmin")
+@RequestMapping("NewsComment")
 @Api(value = "NewsCommentController", description = "新闻评论")
 public class NewsCommentController {
 	@Autowired
