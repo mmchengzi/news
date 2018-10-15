@@ -17,12 +17,13 @@ public class UserDaoImpl implements UserDao {
 	private UserMapper userMapper;
 
 	@Override
-	public List<User> getUser(String userId, String name, String phone, Date time) {
+	public List<User> getUser(String userId, String name, String phone, Date benginDate,Date endDate) {
 		Map map = new HashMap();
 		map.put("userId", userId);
 		map.put("name", name);
 		map.put("phone", phone);
-		map.put("time", time);
+		map.put("benginDate", benginDate);
+		map.put("endDate", endDate);
 		return userMapper.getUser(map);
 	}
 

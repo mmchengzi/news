@@ -55,7 +55,6 @@ public class JsonResult {
 		this.setMessage(message);
 		this.setData(data);
 	}
-
 	@Override
 	public String toString() {
 

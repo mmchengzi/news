@@ -15,10 +15,11 @@ public class NewsHotDaoImpl implements NewsHotDao {
 	@Autowired
 	private NewsHotMapper getNewsFeedback;
 	@Override
-	public List<NewsHot> getNewsHot(String newsId, Date time, String title, String tag) {
+	public List<NewsHot> getNewsHot(String newsId, Date BeginDate,Date EndDate, String title, String tag) {
 		Map map = new HashMap();
 		map.put("newsId", newsId);
-		map.put("time", time);
+		map.put("BeginDate", BeginDate);
+		map.put("EndDate", EndDate);
 		map.put("title", title);
 		map.put("tag", tag);
 		return getNewsFeedback.getNewsHot(map);
