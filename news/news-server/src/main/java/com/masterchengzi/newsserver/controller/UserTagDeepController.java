@@ -42,19 +42,19 @@ public class UserTagDeepController {
 
 
 	@ApiOperation(value = "删除")
-	@GetMapping("/delete")
+	@DeleteMapping("/delete")
 	public JsonResult delete(@RequestParam(name = "userId") String userId) {
 		return userTagDeepService.delete(userId);
 	}
 
 	@ApiOperation(value = "新增")
-	@GetMapping("/insert")
+	@PostMapping("/insert")
 	public JsonResult insert(@ApiParam(value = "UserTagDeep ") @RequestBody UserTagDeep record, HttpServletRequest request) {
 		return userTagDeepService.insert(record);
 	}
 
 	@ApiOperation(value = "修改")
-	@GetMapping("/update")
+	@PostMapping("/update")
 	public JsonResult update(@ApiParam(value = "UserTagDeep ") @RequestBody UserTagDeep record, HttpServletRequest request) {
 		return userTagDeepService.update(record);
 	}

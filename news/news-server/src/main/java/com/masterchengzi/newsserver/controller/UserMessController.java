@@ -40,19 +40,19 @@ public class UserMessController {
 	}
 
 	@ApiOperation(value = "删除")
-	@GetMapping("/delete")
+	@DeleteMapping("/delete")
 	public JsonResult delete(@RequestParam(name = "userId") String userId) {
 		return userMessService.delete(userId);
 	}
 
 	@ApiOperation(value = "新增")
-	@GetMapping("/insert")
+	@PostMapping("/insert")
 	public JsonResult insert(@ApiParam(value = "UserMess ") @RequestBody UserMess record, HttpServletRequest request) {
 		return userMessService.insert(record);
 	}
 
 	@ApiOperation(value = "修改")
-	@GetMapping("/update")
+	@PostMapping("/update")
 	public JsonResult update(@ApiParam(value = "UserMess ") @RequestBody UserMess record, HttpServletRequest request) {
 		return userMessService.update(record);
 	}

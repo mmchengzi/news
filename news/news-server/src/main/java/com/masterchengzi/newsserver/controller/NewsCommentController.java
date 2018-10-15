@@ -39,19 +39,19 @@ public class NewsCommentController {
 	}
 
 	@ApiOperation(value = "删除")
-	@GetMapping("/delete")
+	@DeleteMapping("/delete")
 	public JsonResult delete(@RequestParam(name = "newsId") String newsId) {
 		return newsCommentService.delete(newsId);
 	}
 
 	@ApiOperation(value = "新增")
-	@GetMapping("/insert")
+	@PostMapping("/insert")
 	public JsonResult insert(@ApiParam(value = "NewsComment ") @RequestBody NewsComment  record, HttpServletRequest request) {
 		return newsCommentService.insert(record);
 	}
 
 	@ApiOperation(value = "修改")
-	@GetMapping("/update")
+	@PostMapping("/update")
 	public JsonResult update(@ApiParam(value = "NewsComment ") @RequestBody NewsComment record, HttpServletRequest request) {
 		return newsCommentService.update(record);
 	}

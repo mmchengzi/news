@@ -40,19 +40,19 @@ public class UserLoveTagController {
 	}
 
 	@ApiOperation(value = "删除")
-	@GetMapping("/delete")
+	@DeleteMapping("/delete")
 	public JsonResult delete(@RequestParam(name = "userId") String userId) {
 		return userLoveTagService.delete(userId);
 	}
 
 	@ApiOperation(value = "新增")
-	@GetMapping("/insert")
+	@PostMapping("/insert")
 	public JsonResult insert(@ApiParam(value = "UserLoveTag ") @RequestBody UserLoveTag record, HttpServletRequest request) {
 		return userLoveTagService.insert(record);
 	}
 
 	@ApiOperation(value = "修改")
-	@GetMapping("/update")
+	@PostMapping("/update")
 	public JsonResult update(@ApiParam(value = "UserLoveTag ") @RequestBody UserLoveTag record, HttpServletRequest request) {
 		return userLoveTagService.update(record);
 	}

@@ -42,20 +42,20 @@ public class UserOperateController {
 	}
 
 	@ApiOperation(value = "删除")
-	@GetMapping("/delete")
+	@DeleteMapping("/delete")
 	public JsonResult delete(@RequestParam(name = "userId") String userId,
 							 @RequestParam(name = "newsId") String newsId) {
 		return userOperateService.delete(userId,newsId);
 	}
 
 	@ApiOperation(value = "新增")
-	@GetMapping("/insert")
+	@PostMapping("/insert")
 	public JsonResult insert(@ApiParam(value = "UserOperate ") @RequestBody UserOperate record, HttpServletRequest request) {
 		return userOperateService.insert(record);
 	}
 
 	@ApiOperation(value = "修改")
-	@GetMapping("/update")
+	@PostMapping("/update")
 	public JsonResult update(@ApiParam(value = "UserOperate ") @RequestBody UserOperate record, HttpServletRequest request) {
 		return userOperateService.update(record);
 	}

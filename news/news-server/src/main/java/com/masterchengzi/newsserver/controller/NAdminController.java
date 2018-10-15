@@ -32,7 +32,8 @@ public class NAdminController {
 
 	/**
 	 *
-	 * @param userId
+	 * @param id
+	 * @param name
 	 * @return
 	 */
 	@ApiOperation(value = "获取管理员列表")
@@ -43,19 +44,19 @@ public class NAdminController {
 	}
 
 	@ApiOperation(value = "删除")
-	@GetMapping("/delete")
+	@DeleteMapping("/delete")
 	public JsonResult delete(@RequestParam(name = "id") int id) {
 		return nAdminService.delete(id);
 	}
 
 	@ApiOperation(value = "新增")
-	@GetMapping("/insert")
+	@PostMapping("/insert")
 	public JsonResult insert(@ApiParam(value = "NAdmin") @RequestBody NAdmin record, HttpServletRequest request) {
 		return nAdminService.insert(record);
 	}
 
 	@ApiOperation(value = "修改")
-	@GetMapping("/update")
+	@PostMapping("/update")
 	public JsonResult update(@ApiParam(value = "NAdmin") @RequestBody NAdmin record, HttpServletRequest request) {
 		return nAdminService.update(record);
 	}

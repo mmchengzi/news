@@ -40,19 +40,19 @@ public class NewsTagDeepController {
 	}
 
 	@ApiOperation(value = "删除")
-	@GetMapping("/delete")
+	@DeleteMapping("/delete")
 	public JsonResult delete(@RequestParam(name = "newsId") String newsId) {
 		return newsTagDeepService.delete(newsId);
 	}
 
 	@ApiOperation(value = "新增")
-	@GetMapping("/insert")
+	@PostMapping("/insert")
 	public JsonResult insert(@ApiParam(value = "NewsTagDeep ") @RequestBody NewsTagDeep  record, HttpServletRequest request) {
 		return newsTagDeepService.insert(record);
 	}
 
 	@ApiOperation(value = "修改")
-	@GetMapping("/update")
+	@PostMapping("/update")
 	public JsonResult update(@ApiParam(value = "NewsTagDeep ") @RequestBody NewsTagDeep record, HttpServletRequest request) {
 		return newsTagDeepService.update(record);
 	}

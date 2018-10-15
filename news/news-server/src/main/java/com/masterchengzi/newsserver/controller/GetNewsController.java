@@ -65,19 +65,19 @@ public class GetNewsController {
 	}
 
 	@ApiOperation(value = "删除新闻")
-	@GetMapping("/delete")
+	@DeleteMapping("/delete")
 	public JsonResult delete(@RequestParam(name = "newsId") String newsId) {
 		return getNewsService.delete(newsId);
 	}
 
 	@ApiOperation(value = "新增新闻")
-	@GetMapping("/insert")
+	@PostMapping("/insert")
 	public JsonResult insert(@ApiParam(value = "List<GetNewsWithBLOBs>") @RequestBody List<GetNewsWithBLOBs> record, HttpServletRequest request) {
 		return getNewsService.insert(record);
 	}
 
 	@ApiOperation(value = "修改新闻")
-	@GetMapping("/update")
+	@PostMapping("/update")
 	public JsonResult update(@ApiParam(value = "List<GetNewsWithBLOBs>") @RequestBody List<GetNewsWithBLOBs> record, HttpServletRequest request) {
 		return getNewsService.update(record);
 	}

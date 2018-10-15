@@ -61,7 +61,7 @@ public class UserController {
 	}
 
 	@ApiOperation(value = "删除")
-	@GetMapping("/delete")
+	@DeleteMapping("/delete")
 	public JsonResult delete(@RequestParam(name = "userId") String userId,
 							 @RequestParam(name = "name") String name,
 							 @RequestParam(name = "phone") String phone) {
@@ -69,13 +69,13 @@ public class UserController {
 	}
 
 	@ApiOperation(value = "新增")
-	@GetMapping("/insert")
+	@PostMapping("/insert")
 	public JsonResult insert(@ApiParam(value = "User") @RequestBody User record, HttpServletRequest request) {
 		return userService.insert(record);
 	}
 
 	@ApiOperation(value = "修改")
-	@GetMapping("/update")
+	@PostMapping("/update")
 	public JsonResult update(@ApiParam(value = "User") @RequestBody User record, HttpServletRequest request) {
 		return userService.update(record);
 	}
