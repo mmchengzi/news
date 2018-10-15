@@ -16,10 +16,11 @@ public class NewsFeedbackDaoImpl implements NewsFeedbackDao {
 	private NewsFeedbackMapper newsFeedbackMapper;
 
 	@Override
-	public List<NewsFeedback> getNewsFeedback(String userid, Date gettime) {
+	public List<NewsFeedback> getNewsFeedback(String userid, Date beginDate, Date endDate) {
 		Map map = new HashMap();
 		map.put("userid", userid);
-		map.put("gettime", gettime);
+		map.put("beginDate", beginDate);
+		map.put("endDate", endDate);
 		return newsFeedbackMapper.getNewsFeedback(map);
 	}
 

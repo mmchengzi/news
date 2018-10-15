@@ -20,9 +20,13 @@
       <if test="userId != null">
         AND user_id = #{userId}
       </if>
-      <if test="gettime != null">
-        AND getTime = #{gettime}
+      <if test="beginDate != null and beginDate != ''">
+        AND time <![CDATA[>=]]> #{beginDate}
       </if>
+      <if test="endDate != null and endDate != ''">
+        AND time <![CDATA[<=]]>#{endDate}
+      </if>
+
     </where>
   </select>
   <delete id="delete" parameterType="Map" >

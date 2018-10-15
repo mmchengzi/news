@@ -16,9 +16,9 @@ public class NewsFeedbackServiceImpl implements NewsFeedbackService {
 	@Autowired
 	private NewsFeedbackDao newsFeedbackDao;
 	@Override
-	public JsonResult getNewsFeedback(String userId, Date gettime) {
+	public JsonResult getNewsFeedback(String userId, Date beginDate, Date endDate) {
 		try {
-			List<NewsFeedback> resultList= newsFeedbackDao.getNewsFeedback(userId,gettime);
+			List<NewsFeedback> resultList= newsFeedbackDao.getNewsFeedback(userId,beginDate,endDate);
 			return new JsonResult(ResultCode.SUCCESS,"成功",resultList);
 		}catch (Exception e){
 			e.printStackTrace();
