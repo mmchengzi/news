@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.masterchengzi.newsserver.mybatis.UserTagDeepMapper" >
+<mapper namespace="com.masterchengzi.newsserver.mapper.UserTagDeepMapper" >
   <resultMap id="BaseResultMap" type="com.masterchengzi.newsserver.entity.UserTagDeep" >
     <result column="user_id" property="userId" jdbcType="VARCHAR" />
     <result column="news_society" property="newsSociety" jdbcType="DOUBLE" />

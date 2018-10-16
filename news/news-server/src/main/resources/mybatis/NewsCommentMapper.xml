@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.masterchengzi.newsserver.mybatis.NewsCommentMapper" >
+<mapper namespace="com.masterchengzi.newsserver.mapper.NewsCommentMapper" >
   <resultMap id="BaseResultMap" type="com.masterchengzi.newsserver.entity.NewsComment" >
     <result column="news_id" property="newsId" jdbcType="VARCHAR" />
     <result column="comment" property="comment" jdbcType="VARCHAR" />
@@ -8,7 +8,7 @@
   <sql id="Base_Column_List" >
     news_id, comment
   </sql>
-  <select id="getNAdmin" resultMap="BaseResultMap" parameterType="Map" >
+  <select id="getNewsComment" resultMap="BaseResultMap" parameterType="Map" >
     select
     <include refid="Base_Column_List" />
     from news_comment
