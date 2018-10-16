@@ -4,6 +4,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.masterchengzi.newsserver.common.JsonResult;
 import com.masterchengzi.newsserver.common.ResultCode;
+import com.masterchengzi.newsserver.common.SnowflakeIdWorker;
 import com.masterchengzi.newsserver.dao.GetNewsDao;
 import com.masterchengzi.newsserver.entity.GetNewsWithBLOBs;
 import com.masterchengzi.newsserver.service.GetNewsService;
@@ -57,8 +58,10 @@ public class GetNewsServiceImpl implements GetNewsService {
 	public JsonResult insert(List<GetNewsWithBLOBs> record) {
 		try {
 			int ret = 0;
+			SnowflakeIdWorker idWorker = new SnowflakeIdWorker(0, 0);
 			if (record != null && record.size() > 0) {
 				for (GetNewsWithBLOBs dto : record) {
+					dto.setNewsId(String.valueOf(idWorker.nextId()));
 					int r = getNewsDao.insert(dto);
 					if (r >= 0) ret += r;
 				}

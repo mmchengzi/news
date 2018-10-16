@@ -13,48 +13,49 @@ import java.util.List;
 @Service
 public class NewsTagDeepServiceImpl implements NewsTagDeepService {
 	@Autowired
-	private NewsTagDeepDao  newsTagDeepDao;
+	private NewsTagDeepDao newsTagDeepDao;
+
 	@Override
 	public JsonResult getNewsTagDeep(String newsId) {
 		try {
-			List<NewsTagDeep> resultList= newsTagDeepDao.getNewsTagDeep(newsId);
-			return new JsonResult(ResultCode.SUCCESS,"成功",resultList);
-		}catch (Exception e){
+			List<NewsTagDeep> resultList = newsTagDeepDao.getNewsTagDeep(newsId);
+			return new JsonResult(ResultCode.SUCCESS, "成功", resultList);
+		} catch (Exception e) {
 			e.printStackTrace();
-			return new JsonResult(ResultCode.FAIL,e.getMessage());
+			return new JsonResult(ResultCode.FAIL, e.getMessage());
 		}
 	}
 
 	@Override
 	public JsonResult delete(String newsId) {
 		try {
-			Integer resultList= newsTagDeepDao.delete(newsId);
-			return new JsonResult(ResultCode.SUCCESS,"成功",resultList);
-		}catch (Exception e){
+			Integer resultList = newsTagDeepDao.delete(newsId);
+			return new JsonResult(ResultCode.SUCCESS, "成功", resultList);
+		} catch (Exception e) {
 			e.printStackTrace();
-			return new JsonResult(ResultCode.FAIL,e.getMessage());
+			return new JsonResult(ResultCode.FAIL, e.getMessage());
 		}
 	}
 
 	@Override
 	public JsonResult insert(NewsTagDeep record) {
 		try {
-			Integer resultList= newsTagDeepDao.insert(record);
-			return new JsonResult(ResultCode.SUCCESS,"成功",resultList);
-		}catch (Exception e){
+			Integer resultList = newsTagDeepDao.insert(record);
+			return new JsonResult(ResultCode.SUCCESS, "成功", resultList);
+		} catch (Exception e) {
 			e.printStackTrace();
-			return new JsonResult(ResultCode.FAIL,e.getMessage());
+			return new JsonResult(ResultCode.FAIL, e.getMessage());
 		}
 	}
 
 	@Override
 	public JsonResult update(NewsTagDeep record) {
 		try {
-			Integer resultList= newsTagDeepDao.update(record);
-			return new JsonResult(ResultCode.SUCCESS,"成功",resultList);
-		}catch (Exception e){
+			Integer resultList = newsTagDeepDao.update(record);
+			return new JsonResult(ResultCode.SUCCESS, "成功", resultList);
+		} catch (Exception e) {
 			e.printStackTrace();
-			return new JsonResult(ResultCode.FAIL,e.getMessage());
+			return new JsonResult(ResultCode.FAIL, e.getMessage());
 		}
 	}
 }

@@ -2,6 +2,7 @@ package com.masterchengzi.newsserver.service.impl;
 
 import com.masterchengzi.newsserver.common.JsonResult;
 import com.masterchengzi.newsserver.common.ResultCode;
+import com.masterchengzi.newsserver.common.SnowflakeIdWorker;
 import com.masterchengzi.newsserver.dao.NewsCommentDao;
 import com.masterchengzi.newsserver.entity.NewsComment;
 import com.masterchengzi.newsserver.service.NewsCommentService;
