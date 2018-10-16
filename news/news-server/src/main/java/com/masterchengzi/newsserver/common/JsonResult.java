@@ -13,25 +13,6 @@ public class JsonResult {
 	private String code;
 	private String message;
 	private Object data;
-	private int    PageCount;
-
-	public int getPageCount() {
-		return PageCount;
-	}
-
-	public void setPageCount(int pageCount) {
-		PageCount = pageCount;
-	}
-
-	public int getPageNum() {
-		return PageNum;
-	}
-
-	public void setPageNum(int pageNum) {
-		PageNum = pageNum;
-	}
-
-	private int PageNum;
 
 
 	public JsonResult() {
