@@ -1,4 +1,4 @@
-package com.masterchengzi.newsserver.common;
+package com.masterchengzi.newscommon.common;
 
 public enum ResultCode {
 

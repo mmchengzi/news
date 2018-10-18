@@ -1,6 +1,5 @@
 package com.masterchengzi.newsserver.controller;
-
-import com.masterchengzi.newsserver.common.JsonResult;
+import com.masterchengzi.newscommon.common.JsonResult;
 import com.masterchengzi.newsserver.entity.GetNewsWithBLOBs;
 import com.masterchengzi.newsserver.service.GetNewsService;
 import com.wordnik.swagger.annotations.Api;
@@ -72,13 +71,13 @@ public class GetNewsController {
 
 	@ApiOperation(value = "新增新闻")
 	@PostMapping("/insert")
-	public JsonResult insert(@ApiParam(value = "List<GetNewsWithBLOBs>") @RequestBody List<GetNewsWithBLOBs> record, HttpServletRequest request) {
+	public JsonResult insert(@ApiParam(value = "List<GetNewsWithBLOBs>") @RequestBody List<GetNewsWithBLOBs> record) {
 		return getNewsService.insert(record);
 	}
 
 	@ApiOperation(value = "修改新闻")
 	@PostMapping("/update")
-	public JsonResult update(@ApiParam(value = "List<GetNewsWithBLOBs>") @RequestBody List<GetNewsWithBLOBs> record, HttpServletRequest request) {
+	public JsonResult update(@ApiParam(value = "List<GetNewsWithBLOBs>") @RequestBody List<GetNewsWithBLOBs> record) {
 		return getNewsService.update(record);
 	}
 }

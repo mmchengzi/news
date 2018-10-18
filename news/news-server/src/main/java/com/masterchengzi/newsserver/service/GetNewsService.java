@@ -1,6 +1,6 @@
 package com.masterchengzi.newsserver.service;
 
-import com.masterchengzi.newsserver.common.JsonResult;
+import com.masterchengzi.newscommon.common.JsonResult;
 import com.masterchengzi.newsserver.entity.GetNewsWithBLOBs;
 
 import java.util.Date;

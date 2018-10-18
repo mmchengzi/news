@@ -1,8 +1,6 @@
 package com.masterchengzi.newsserver.service.impl;
-
-import com.masterchengzi.newsserver.common.JsonResult;
-import com.masterchengzi.newsserver.common.ResultCode;
-import com.masterchengzi.newsserver.common.SnowflakeIdWorker;
+import com.masterchengzi.newscommon.common.JsonResult;
+import com.masterchengzi.newscommon.common.ResultCode;
 import com.masterchengzi.newsserver.dao.NewsMessDao;
 import com.masterchengzi.newsserver.entity.NewsMess;
 import com.masterchengzi.newsserver.service.NewsMessService;

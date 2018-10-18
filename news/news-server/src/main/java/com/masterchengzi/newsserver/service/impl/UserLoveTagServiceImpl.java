@@ -1,7 +1,6 @@
 package com.masterchengzi.newsserver.service.impl;
-
-import com.masterchengzi.newsserver.common.JsonResult;
-import com.masterchengzi.newsserver.common.ResultCode;
+import com.masterchengzi.newscommon.common.JsonResult;
+import com.masterchengzi.newscommon.common.ResultCode;
 import com.masterchengzi.newsserver.dao.UserLoveTagDao;
 import com.masterchengzi.newsserver.entity.UserLoveTag;
 import com.masterchengzi.newsserver.service.UserLoveTagService;

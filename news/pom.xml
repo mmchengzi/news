@@ -12,6 +12,8 @@
     <description>Demo project for Spring Boot</description>
     <modules>
         <module>news-server</module>
+        <module>news-getserver</module>
+        <module>news-common</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>

@@ -1,7 +1,8 @@
-package com.masterchengzi.newsserver.common;
+package com.masterchengzi.newscommon.common;
 
 import com.alibaba.fastjson.JSONException;
 import com.alibaba.fastjson.JSONObject;
+
 /**
 *User zjc
 *Created with IntelliJ IDEA

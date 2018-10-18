@@ -1,9 +1,6 @@
 package com.masterchengzi.newsserver.controller;
-
-import com.masterchengzi.newsserver.common.JsonResult;
-import com.masterchengzi.newsserver.entity.GetNewsWithBLOBs;
+import com.masterchengzi.newscommon.common.JsonResult;
 import com.masterchengzi.newsserver.entity.NAdmin;
-import com.masterchengzi.newsserver.service.GetNewsService;
 import com.masterchengzi.newsserver.service.NAdminService;
 import com.wordnik.swagger.annotations.Api;
 import com.wordnik.swagger.annotations.ApiOperation;
@@ -13,8 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.Date;
-import java.util.List;
 
 /**
  * User zjc

@@ -1,9 +1,7 @@
 package com.masterchengzi.newsserver.controller;
 
-import com.masterchengzi.newsserver.common.JsonResult;
-import com.masterchengzi.newsserver.entity.NewsRecommend;
+import com.masterchengzi.newscommon.common.JsonResult;
 import com.masterchengzi.newsserver.entity.NewsTagDeep;
-import com.masterchengzi.newsserver.service.NewsRecommendService;
 import com.masterchengzi.newsserver.service.NewsTagDeepService;
 import com.wordnik.swagger.annotations.Api;
 import com.wordnik.swagger.annotations.ApiOperation;

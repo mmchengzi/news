@@ -1,9 +1,7 @@
 package com.masterchengzi.newsserver.controller;
 
-import com.masterchengzi.newsserver.common.JsonResult;
-import com.masterchengzi.newsserver.entity.UserBehavior;
+import com.masterchengzi.newscommon.common.JsonResult;
 import com.masterchengzi.newsserver.entity.UserLoveTag;
-import com.masterchengzi.newsserver.service.UserBehaviorService;
 import com.masterchengzi.newsserver.service.UserLoveTagService;
 import com.wordnik.swagger.annotations.Api;
 import com.wordnik.swagger.annotations.ApiOperation;

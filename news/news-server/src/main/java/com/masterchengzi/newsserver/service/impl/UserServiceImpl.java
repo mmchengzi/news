@@ -2,8 +2,8 @@ package com.masterchengzi.newsserver.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.masterchengzi.newsserver.common.JsonResult;
-import com.masterchengzi.newsserver.common.ResultCode;
+import com.masterchengzi.newscommon.common.JsonResult;
+import com.masterchengzi.newscommon.common.ResultCode;
 import com.masterchengzi.newsserver.dao.UserDao;
 import com.masterchengzi.newsserver.entity.User;
 import com.masterchengzi.newsserver.service.UserService;

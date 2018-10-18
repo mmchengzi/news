@@ -7,7 +7,7 @@
     <result column="source" property="source" jdbcType="VARCHAR" />
     <result column="time" property="time" jdbcType="TIMESTAMP" />
     <result column="title" property="title" jdbcType="VARCHAR" />
-    <result column="abstract" property="abstract" jdbcType="VARCHAR" />
+    <result column="headline" property="headline" jdbcType="VARCHAR" />
     <result column="tag" property="tag" jdbcType="VARCHAR" />
     <result column="image" property="image" jdbcType="VARCHAR" />
     <result column="video" property="video" jdbcType="VARCHAR" />
@@ -19,7 +19,7 @@
     <result column="html_content" property="htmlContent" jdbcType="LONGVARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    news_id, news_link, source, time, title, abstract, tag, image, video, keyword, is_old
+    news_id, news_link, source, time, title, headline, tag, image, video, keyword, is_old
   </sql>
   <sql id="Blob_Column_LisGt" >
     text_content, html_content
@@ -60,12 +60,12 @@
   </delete>
   <insert id="insert" parameterType="com.masterchengzi.newsserver.entity.GetNewsWithBLOBs" >
     insert into get_news (news_id, news_link, source,
-      time, title, abstract,
+      time, title, headline,
       tag, image, video,
       keyword, is_old, text_content,
       html_content)
     values (#{newsId,jdbcType=VARCHAR}, #{newsLink,jdbcType=VARCHAR}, #{source,jdbcType=VARCHAR},
-      #{time,jdbcType=TIMESTAMP}, #{title,jdbcType=VARCHAR}, #{abstract,jdbcType=VARCHAR},
+      #{time,jdbcType=TIMESTAMP}, #{title,jdbcType=VARCHAR}, #{headline,jdbcType=VARCHAR},
       #{tag,jdbcType=VARCHAR}, #{image,jdbcType=VARCHAR}, #{video,jdbcType=VARCHAR},
       #{keyword,jdbcType=VARCHAR}, #{isOld,jdbcType=INTEGER}, #{textContent,jdbcType=LONGVARCHAR},
       #{htmlContent,jdbcType=LONGVARCHAR})
@@ -85,8 +85,8 @@
       <if test="title != null" >
         title = #{title,jdbcType=VARCHAR},
       </if>
-      <if test="abstract != null" >
-        abstract = #{abstract,jdbcType=VARCHAR},
+      <if test="headline != null" >
+        headline = #{headline,jdbcType=VARCHAR},
       </if>
       <if test="tag != null" >
         tag = #{tag,jdbcType=VARCHAR},

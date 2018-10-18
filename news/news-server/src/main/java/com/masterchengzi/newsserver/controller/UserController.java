@@ -1,9 +1,7 @@
 package com.masterchengzi.newsserver.controller;
 
-import com.masterchengzi.newsserver.common.JsonResult;
+import com.masterchengzi.newscommon.common.JsonResult;
 import com.masterchengzi.newsserver.entity.User;
-import com.masterchengzi.newsserver.entity.UserOperate;
-import com.masterchengzi.newsserver.service.UserOperateService;
 import com.masterchengzi.newsserver.service.UserService;
 import com.wordnik.swagger.annotations.Api;
 import com.wordnik.swagger.annotations.ApiOperation;
@@ -41,10 +39,10 @@ public class UserController {
 	@ApiOperation(value = "获取列表")
 	@GetMapping("/getUser")
 	public JsonResult getUser(@RequestParam(name = "userId") String userId,
-									 @RequestParam(name = "name") String name,
-									 @RequestParam(name = "phone") String phone,
-									 @RequestParam(name = "beginDate") Date beginDate,
-									 @RequestParam(name = "endDate") Date endDate) {
+							  @RequestParam(name = "name") String name,
+							  @RequestParam(name = "phone") String phone,
+							  @RequestParam(name = "beginDate") Date beginDate,
+							  @RequestParam(name = "endDate") Date endDate) {
 		return userService.getUser(userId,name,phone,beginDate,endDate);
 	}
 

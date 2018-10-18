@@ -1,9 +1,7 @@
 package com.masterchengzi.newsserver.controller;
 
-import com.masterchengzi.newsserver.common.JsonResult;
-import com.masterchengzi.newsserver.entity.NewsFeedback;
+import com.masterchengzi.newscommon.common.JsonResult;
 import com.masterchengzi.newsserver.entity.NewsMess;
-import com.masterchengzi.newsserver.service.NewsFeedbackService;
 import com.masterchengzi.newsserver.service.NewsMessService;
 import com.wordnik.swagger.annotations.Api;
 import com.wordnik.swagger.annotations.ApiOperation;
@@ -13,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.Date;
 
 /**
  * User zjc
@@ -38,7 +35,7 @@ public class NewsMessController {
 	@ApiOperation(value = "获取列表")
 	@GetMapping("/getNewsMess")
 	public JsonResult getNewsMess(@RequestParam(name = "newsId") String newsId,
-									 @RequestParam(name = "tag") String tag) {
+								  @RequestParam(name = "tag") String tag) {
 		return getNewsFeedback.getNewsMess(newsId, tag);
 	}
 
