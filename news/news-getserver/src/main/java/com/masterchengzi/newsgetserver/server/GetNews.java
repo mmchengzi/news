@@ -10,7 +10,7 @@ public interface GetNews {
 	 * @param site qq.com
 	 * @return
 	 */
-	JsonResult get360News(String kw, String site);
+	JsonResult get360News(String kw,String pageToken, String site);
 
 	/**
 	 * @param kw        关键字

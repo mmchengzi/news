@@ -24,11 +24,11 @@ public class ScheduledTask {
 	@Autowired
 	private GetNewsFeign getNewsFeign;
 
-	@Scheduled(fixedRate = 5000)
+	//@Scheduled(fixedRate = 5000)
 	public void get360News() {
 		try {
 			log.info("开始获取数据");
-			JsonResult jsonResult = getNews.get360News("明星", "qq.com");
+			JsonResult jsonResult = getNews.get360News("明星", null, "qq.com");
 			if ("200".equals(jsonResult.getCode())) {
 				String str = jsonResult.getData().toString();
 				JSONObject myJsonObject = new JSONObject(str);
@@ -50,12 +50,38 @@ public class ScheduledTask {
 					}
 					log.info("开始上传：" + newsWithBLOBsList.size());
 					JsonResult result = getNewsFeign.insert(newsWithBLOBsList);
-					log.info("成功获取新闻数：" + result.toString());
+					log.info("成功上传新闻数：" + result.toString());
 				}
 			}
-		}catch (Exception e){
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
 	}
+	@Scheduled(fixedRate = 5000)
+	//@Scheduled(cron = "0 0/20 8-23 * * ?")  // 15*3 45
+	public void getJuheNewsTop() {
+		getNews.getJuheNews("top");
+	}
+	@Scheduled(cron = "0 0/30 8-22 * * ?")  // 14*2 28
+	public void getJuheNews1() {
+		getNews.getJuheNews("guonei");
+		getNews.getJuheNews("guoji");
+		getNews.getJuheNews("keji");
+		getNews.getJuheNews("yule");
+	}
+	@Scheduled(cron = "0 0/40 8-22 * * ?")  // 9*1.5 12
+	public void getJuheNews2() {
+		getNews.getJuheNews("shehui");
+		getNews.getJuheNews("junshi");
+	}
+	@Scheduled(cron = "0 0/59 9-18 * * ?")  // 7*1 6  2
+	public void getJuheNews3() {
+		getNews.getJuheNews("tiyu");
+		getNews.getJuheNews("caijing");
+		getNews.getJuheNews("shishang");
+
+	}
+
+
 }
