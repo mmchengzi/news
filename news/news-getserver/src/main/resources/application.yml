@@ -2,7 +2,7 @@ spring:
   application:
     name: news-getserver
   profiles:
-    active: dev
+     active: dev
 server:
   port: 8084
 
@@ -24,7 +24,6 @@ management:
   endpoint:
     health:
       show-details: ALWAYS
-
 idataapi:
   Url360: http://api01.idataapi.cn:8000/news/qihoo?apikey=vZuaffbf38RMVPr2c5JHrmrcutFGpVA9Px2Najsa1xunUG7Cx0KV2sfD3hLExibg
   cctvUrl: http://api01.idataapi.cn:8000/news/cctvplus?apikey=vZuaffbf38RMVPr2c5JHrmrcutFGpVA9Px2Najsa1xunUG7Cx0KV2sfD3hLExibg

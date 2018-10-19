@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 public interface GetNewsDao {
-	List<GetNewsWithBLOBs> getGetNews(String newsId,String title,String keyword,String tag,int isOld,Date beginDate,Date endDate);
+	List<GetNewsWithBLOBs> getGetNews(String newsId,String title,String keyword,String tag,Integer isOld,Date beginDate,Date endDate);
 
 	int delete(String newsId);
 

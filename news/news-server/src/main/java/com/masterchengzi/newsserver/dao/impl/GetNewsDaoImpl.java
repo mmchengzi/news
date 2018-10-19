@@ -17,7 +17,7 @@ public class GetNewsDaoImpl implements GetNewsDao {
 	GetNewsMapper getNewsMapper;
 
 	@Override
-	public List<GetNewsWithBLOBs> getGetNews(String newsId, String title, String keyword, String tag, int isOld, Date beginDate,Date endDate) {
+	public List<GetNewsWithBLOBs> getGetNews(String newsId, String title, String keyword, String tag, Integer isOld, Date beginDate,Date endDate) {
 		Map map = new HashMap();
 		map.put("newsId", newsId);
 		map.put("title", title);

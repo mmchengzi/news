@@ -33,7 +33,7 @@ public class UserLoveTagController {
 	 */
 	@ApiOperation(value = "获取列表")
 	@GetMapping("/getUserLoveTag")
-	public JsonResult getUserLoveTag(@RequestParam(name = "userId") String userId) {
+	public JsonResult getUserLoveTag(@RequestParam(name = "userId", required=false) String userId) {
 		return userLoveTagService.getUserLoveTag(userId);
 	}
 

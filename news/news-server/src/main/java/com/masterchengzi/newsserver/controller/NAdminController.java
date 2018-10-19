@@ -33,8 +33,8 @@ public class NAdminController {
 	 */
 	@ApiOperation(value = "获取管理员列表")
 	@GetMapping("/getNAdmin")
-	public JsonResult getNAdmin(@RequestParam(name = "id") int id,
-								@RequestParam(name = "name") String name) {
+	public JsonResult getNAdmin(@RequestParam(name = "id", required=false) int id,
+								@RequestParam(name = "name", required=false) String name) {
 		return nAdminService.getNAdmin(id,name);
 	}
 

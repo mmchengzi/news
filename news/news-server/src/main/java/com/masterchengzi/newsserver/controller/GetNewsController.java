@@ -1,4 +1,5 @@
 package com.masterchengzi.newsserver.controller;
+
 import com.masterchengzi.newscommon.common.JsonResult;
 import com.masterchengzi.newsserver.entity.GetNewsWithBLOBs;
 import com.masterchengzi.newsserver.service.GetNewsService;
@@ -9,7 +10,6 @@ import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 import java.util.List;
 
@@ -39,27 +39,27 @@ public class GetNewsController {
 	 */
 	@ApiOperation(value = "查询新闻列表")
 	@GetMapping("/getGetNews")
-	public JsonResult getGetNews(@RequestParam(name = "newsId") String newsId,
-								 @RequestParam(name = "title") String title,
-								 @RequestParam(name = "keyword") String keyword,
-								 @RequestParam(name = "tag") String tag,
-								 @RequestParam(name = "isOld") int isOld,
-								 @RequestParam(name = "beginDate") Date beginDate,
-								 @RequestParam(name = "endDate") Date endDate) {
+	public JsonResult getGetNews(@RequestParam(value="newsId", required=false) String newsId,
+								 @RequestParam(value="title", required=false) String title,
+								 @RequestParam(value="keyword", required=false) String keyword,
+								 @RequestParam(value="tag", required=false) String tag,
+								 @RequestParam(value="isOld", required=false) Integer isOld,
+								 @RequestParam(value="beginDate", required=false)  Date beginDate,
+								 @RequestParam(value="endDate", required=false) Date endDate) {
 		return getNewsService.getGetNews(newsId, title, keyword, tag, isOld, beginDate, endDate);
 	}
 
 	@ApiOperation(value = "分页查询新闻")
 	@GetMapping("/getPageNews")
-	public JsonResult getPageNews(@RequestParam(name = "newsId") String newsId,
-								  @RequestParam(name = "title") String title,
-								  @RequestParam(name = "keyword") String keyword,
-								  @RequestParam(name = "tag") String tag,
-								  @RequestParam(name = "isOld") int isOld,
-								  @RequestParam(name = "beginDate") Date beginDate,
-								  @RequestParam(name = "endDate") Date endDate,
-								  @RequestParam(name = "pageNum") int pageNum,
-								  @RequestParam(name = "pageSize") int pageSize) {
+	public JsonResult getPageNews(@RequestParam(value="newsId", required=false) String newsId,
+								  @RequestParam(value="title", required=false) String title,
+								  @RequestParam(value="keyword", required=false) String keyword,
+								  @RequestParam(value="tag", required=false) String tag,
+								  @RequestParam(value="isOld", required=false) Integer isOld,
+								  @RequestParam(value="beginDate", required=false)  Date beginDate,
+								  @RequestParam(value="endDate", required=false) Date endDate,
+								  @RequestParam(name = "pageNum", required=false) int pageNum,
+								  @RequestParam(name = "pageSize", required=false) int pageSize) {
 		return getNewsService.getPageNews(newsId, title, keyword, tag, isOld, beginDate, endDate, pageNum, pageSize);
 	}
 
@@ -68,7 +68,7 @@ public class GetNewsController {
 	public JsonResult delete(@RequestParam(name = "newsId") String newsId) {
 		return getNewsService.delete(newsId);
 	}
-
+	@ResponseBody
 	@ApiOperation(value = "新增新闻")
 	@PostMapping("/insert")
 	public JsonResult insert(@ApiParam(value = "List<GetNewsWithBLOBs>") @RequestBody List<GetNewsWithBLOBs> record) {

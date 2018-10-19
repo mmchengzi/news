@@ -36,9 +36,9 @@ public class NewsFeedbackController {
 	 */
 	@ApiOperation(value = "获取列表")
 	@GetMapping("/getNewsComment")
-	public JsonResult getNewsComment(@RequestParam(name = "userId") String userId,
-									 @RequestParam(name = "beginDate") Date beginDate,
-									 @RequestParam(name = "endDate") Date endDate) {
+	public JsonResult getNewsComment(@RequestParam(name = "userId", required=false) String userId,
+									 @RequestParam(name = "beginDate", required=false) Date beginDate,
+									 @RequestParam(name = "endDate", required=false) Date endDate) {
 		return newsFeedbackService.getNewsFeedback(userId, beginDate, endDate);
 	}
 

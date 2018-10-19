@@ -4,6 +4,7 @@ import lombok.Data;
 import lombok.extern.java.Log;
 
 import java.util.Date;
+
 @Data
 @Log
 public class GetNews {

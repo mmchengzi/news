@@ -33,7 +33,7 @@ public class NewsRecommendController {
 	 */
 	@ApiOperation(value = "获取列表")
 	@GetMapping("/getNewsRecommend")
-	public JsonResult getNewsRecommend(@RequestParam(name = "userId") String userId) {
+	public JsonResult getNewsRecommend(@RequestParam(name = "userId", required=false) String userId) {
 		return newsRecommendService.getNewsRecommend(userId);
 	}
 

@@ -32,9 +32,9 @@ public class UserBehaviorController {
 	 */
 	@ApiOperation(value = "获取列表")
 	@GetMapping("/getUserBehavior")
-	public JsonResult getUserBehavior(@RequestParam(name = "userId") String userId,
-									  @RequestParam(name = "newsId") String newsId,
-									  @RequestParam(name = "newsTag") String newsTag) {
+	public JsonResult getUserBehavior(@RequestParam(name = "userId", required=false) String userId,
+									  @RequestParam(name = "newsId", required=false) String newsId,
+									  @RequestParam(name = "newsTag", required=false) String newsTag) {
 		return userBehaviorService.getUserBehavior(userId, newsId, newsTag);
 	}
 

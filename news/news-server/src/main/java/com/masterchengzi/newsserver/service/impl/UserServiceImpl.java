@@ -30,7 +30,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public JsonResult getPageUser(String userId, String name, String phone, Date benginDate, Date endDate, int pageNum, int pageSize) {
+	public JsonResult getPageUser(String userId, String name, String phone, Date benginDate, Date endDate, Integer pageNum, Integer pageSize) {
 		try {
 			PageHelper.startPage(pageNum, pageSize);
 			List<User> resultList = userDao.getUser(userId, name, phone, benginDate, endDate);

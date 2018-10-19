@@ -33,7 +33,7 @@ public class UserTagScoreController {
 	 */
 	@ApiOperation(value = "获取列表")
 	@GetMapping("/getUser")
-	public JsonResult getUser(@RequestParam(name = "userId") String userId) {
+	public JsonResult getUser(@RequestParam(name = "userId", required=false) String userId) {
 		return userTagScoreService.getUserTagScore(userId);
 	}
 

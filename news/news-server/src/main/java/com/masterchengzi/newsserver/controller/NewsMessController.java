@@ -34,8 +34,8 @@ public class NewsMessController {
 	 */
 	@ApiOperation(value = "获取列表")
 	@GetMapping("/getNewsMess")
-	public JsonResult getNewsMess(@RequestParam(name = "newsId") String newsId,
-								  @RequestParam(name = "tag") String tag) {
+	public JsonResult getNewsMess(@RequestParam(name = "newsId", required=false) String newsId,
+								  @RequestParam(name = "tag", required=false) String tag) {
 		return getNewsFeedback.getNewsMess(newsId, tag);
 	}
 

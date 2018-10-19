@@ -7,8 +7,8 @@ import java.util.Date;
 import java.util.List;
 
 public interface GetNewsService {
-	JsonResult getGetNews(String newsId, String title, String keyword, String tag, int isOld, Date beginDate, Date endDate);
-	JsonResult getPageNews(String newsId, String title, String keyword, String tag, int isOld, Date beginDate, Date endDate,int pageNum, int pageSize);
+	JsonResult getGetNews(String newsId, String title, String keyword, String tag, Integer isOld, Date beginDate, Date endDate);
+	JsonResult getPageNews(String newsId, String title, String keyword, String tag, Integer isOld, Date beginDate, Date endDate,Integer pageNum, Integer pageSize);
 
 	JsonResult delete(String newsId);
 

@@ -38,23 +38,23 @@ public class UserController {
 	 */
 	@ApiOperation(value = "获取列表")
 	@GetMapping("/getUser")
-	public JsonResult getUser(@RequestParam(name = "userId") String userId,
-							  @RequestParam(name = "name") String name,
-							  @RequestParam(name = "phone") String phone,
-							  @RequestParam(name = "beginDate") Date beginDate,
-							  @RequestParam(name = "endDate") Date endDate) {
+	public JsonResult getUser(@RequestParam(name = "userId", required=false) String userId,
+							  @RequestParam(name = "name", required=false) String name,
+							  @RequestParam(name = "phone", required=false) String phone,
+							  @RequestParam(name = "beginDate", required=false) Date beginDate,
+							  @RequestParam(name = "endDate", required=false) Date endDate) {
 		return userService.getUser(userId,name,phone,beginDate,endDate);
 	}
 
 	@ApiOperation(value = "分页获取列表")
 	@GetMapping("/getPageUser")
-	public JsonResult getPageUser(@RequestParam(name = "userId") String userId,
-							  @RequestParam(name = "name") String name,
-							  @RequestParam(name = "phone") String phone,
-							  @RequestParam(name = "beginDate") Date beginDate,
-							  @RequestParam(name = "endDate") Date endDate,
-							  @RequestParam(name = "pageNum") int pageNum,
-							  @RequestParam(name = "pageSize") int pageSize) {
+	public JsonResult getPageUser(@RequestParam(name = "userId", required=false) String userId,
+							  @RequestParam(name = "name", required=false) String name,
+							  @RequestParam(name = "phone", required=false) String phone,
+							  @RequestParam(name = "beginDate", required=false) Date beginDate,
+							  @RequestParam(name = "endDate", required=false) Date endDate,
+							  @RequestParam(name = "pageNum", required=false) Integer pageNum,
+							  @RequestParam(name = "pageSize", required=false) Integer pageSize) {
 		return userService.getPageUser(userId,name,phone,beginDate,endDate,pageNum,pageSize);
 	}
 

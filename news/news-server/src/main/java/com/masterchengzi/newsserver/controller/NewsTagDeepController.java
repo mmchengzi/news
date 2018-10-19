@@ -33,7 +33,7 @@ public class NewsTagDeepController {
 	 */
 	@ApiOperation(value = "获取列表")
 	@GetMapping("/getNewsTagDeep")
-	public JsonResult getNewsTagDeep(@RequestParam(name = "newsId") String newsId) {
+	public JsonResult getNewsTagDeep(@RequestParam(name = "newsId", required=false) String newsId) {
 		return newsTagDeepService.getNewsTagDeep(newsId);
 	}
 

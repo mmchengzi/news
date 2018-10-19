@@ -38,11 +38,11 @@ public class NewsHotController {
 	 */
 	@ApiOperation(value = "获取列表")
 	@GetMapping("/getNewsHot")
-	public JsonResult getNewsHot(@RequestParam(name = "newsId") String newsId,
-								 @RequestParam(name = "beginDate") Date beginDate,
-								 @RequestParam(name = "endDate") Date endDate,
-								 @RequestParam(name = "title") String title,
-								 @RequestParam(name = "tag") String tag) {
+	public JsonResult getNewsHot(@RequestParam(name = "newsId", required=false) String newsId,
+								 @RequestParam(name = "beginDate", required=false) Date beginDate,
+								 @RequestParam(name = "endDate", required=false) Date endDate,
+								 @RequestParam(name = "title", required=false) String title,
+								 @RequestParam(name = "tag", required=false) String tag) {
 		return newsHotService.getNewsHot(newsId, beginDate, endDate, title, tag);
 	}
 }

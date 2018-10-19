@@ -33,7 +33,7 @@ public class NewsCommentController {
 	 */
 	@ApiOperation(value = "获取新闻评论列表")
 	@GetMapping("/getNewsComment")
-	public JsonResult getNewsComment(@RequestParam(name = "newsId") String newsId) {
+	public JsonResult getNewsComment(@RequestParam(name = "newsId", required=false) String newsId) {
 		return newsCommentService.getNewsComment(newsId);
 	}
 

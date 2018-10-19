@@ -20,7 +20,7 @@ public class GetNewsServiceImpl implements GetNewsService {
 	private GetNewsDao getNewsDao;
 
 	@Override
-	public JsonResult getGetNews(String newsId, String title, String keyword, String tag, int isOld, Date beginDate, Date endDate) {
+	public JsonResult getGetNews(String newsId, String title, String keyword, String tag, Integer isOld, Date beginDate, Date endDate) {
 		try {
 			List<GetNewsWithBLOBs> resultList = getNewsDao.getGetNews(newsId, title, keyword, tag, isOld, beginDate, endDate);
 			return new JsonResult(ResultCode.SUCCESS, "成功", resultList);
@@ -31,7 +31,7 @@ public class GetNewsServiceImpl implements GetNewsService {
 	}
 
 	@Override
-	public JsonResult getPageNews(String newsId, String title, String keyword, String tag, int isOld, Date beginDate, Date endDate, int pageNum, int pageSize) {
+	public JsonResult getPageNews(String newsId, String title, String keyword, String tag, Integer isOld, Date beginDate, Date endDate, Integer pageNum, Integer pageSize) {
 		try {
 			PageHelper.startPage(pageNum, pageSize);
 			List<GetNewsWithBLOBs> resultList = getNewsDao.getGetNews(newsId, title, keyword, tag, isOld, beginDate, endDate);
@@ -61,12 +61,15 @@ public class GetNewsServiceImpl implements GetNewsService {
 			SnowflakeIdWorker idWorker = new SnowflakeIdWorker(0, 0);
 			if (record != null && record.size() > 0) {
 				for (GetNewsWithBLOBs dto : record) {
+					List<GetNewsWithBLOBs> rlt=getNewsDao.getGetNews(null,dto.getTitle(),null,null,null,null,null);
+					if(rlt!=null &&rlt.size()>0) continue;
 					dto.setNewsId(String.valueOf(idWorker.nextId()));
 					int r = getNewsDao.insert(dto);
 					if (r >= 0) ret += r;
 				}
 			}
-			return new JsonResult(ResultCode.SUCCESS, "成功", ret);
+			 JsonResult rlt=new JsonResult(ResultCode.SUCCESS, "成功", ret);
+			return rlt;
 		} catch (Exception e) {
 			e.printStackTrace();
 			return new JsonResult(ResultCode.FAIL, e.getMessage());

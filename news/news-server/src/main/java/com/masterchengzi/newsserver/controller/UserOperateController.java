@@ -34,8 +34,8 @@ public class UserOperateController {
 	 */
 	@ApiOperation(value = "获取列表")
 	@GetMapping("/getUserOperate")
-	public JsonResult getUserOperate(@RequestParam(name = "userId") String userId,
-									 @RequestParam(name = "newsId") String newsId) {
+	public JsonResult getUserOperate(@RequestParam(name = "userId", required=false) String userId,
+									 @RequestParam(name = "newsId", required=false) String newsId) {
 		return userOperateService.getUserOperate(userId,newsId);
 	}
 

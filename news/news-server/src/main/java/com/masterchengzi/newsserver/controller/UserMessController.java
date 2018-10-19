@@ -33,7 +33,7 @@ public class UserMessController {
 	 */
 	@ApiOperation(value = "获取列表")
 	@GetMapping("/getUserMess")
-	public JsonResult getUserMess(@RequestParam(name = "userId") String userId) {
+	public JsonResult getUserMess(@RequestParam(name = "userId", required=false) String userId) {
 		return userMessService.getUserMess(userId);
 	}
 

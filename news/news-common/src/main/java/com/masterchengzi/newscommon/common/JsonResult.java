@@ -17,23 +17,23 @@ public class JsonResult {
 
 
 	public JsonResult() {
-		this.setCode(ResultCode.SUCCESS);
+		this.setCode(ResultCode.SUCCESS.val());
 		this.setMessage("成功！");
 	}
 
 	public JsonResult(ResultCode code) {
-		this.setCode(code);
+		this.setCode(code.val());
 		this.setMessage(code.msg());
 	}
 
 	public JsonResult(ResultCode code, String message) {
-		this.setCode(code);
+		this.setCode(code.val());
 		this.setMessage(message);
 	}
 
 	public JsonResult(ResultCode code, String message, Object data) {
 
-		this.setCode(code);
+		this.setCode(code.val());
 		this.setMessage(message);
 		this.setData(data);
 	}
@@ -56,8 +56,8 @@ public class JsonResult {
 		return code;
 	}
 
-	public void setCode(ResultCode code) {
-		this.code = code.val();
+	public void setCode(String code) {
+		this.code = code;
 	}
 
 	public String getMessage() {

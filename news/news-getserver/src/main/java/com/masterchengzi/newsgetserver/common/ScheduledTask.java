@@ -26,32 +26,36 @@ public class ScheduledTask {
 
 	@Scheduled(fixedRate = 5000)
 	public void get360News() {
-		log.info("开始获取数据");
-		JsonResult jsonResult = getNews.get360News("明星", "qq.com");
-		if ("200".equals(jsonResult.getCode())) {
-			String str = jsonResult.getData().toString();
-			JSONObject myJsonObject = new JSONObject(str);
-			if (!myJsonObject.get("retcode").equals("000000")) {
-				return;
-			}
-			log.info(myJsonObject);
-			JSONArray data = myJsonObject.getJSONArray("data");
+		try {
+			log.info("开始获取数据");
+			JsonResult jsonResult = getNews.get360News("明星", "qq.com");
+			if ("200".equals(jsonResult.getCode())) {
+				String str = jsonResult.getData().toString();
+				JSONObject myJsonObject = new JSONObject(str);
+				if (myJsonObject.get("retcode").equals("000000")) {
+					log.info(myJsonObject);
+					JSONArray data = myJsonObject.getJSONArray("data");
 
-			List<GetNewsWithBLOBs> newsWithBLOBsList = new ArrayList<>();
-			for (int i = 0; i < data.length(); i++) {
-				GetNewsWithBLOBs newsWithBLOBs = new GetNewsWithBLOBs();
-				JSONObject job = data.getJSONObject(i);
-				newsWithBLOBs.setNewsLink(job.getString("url"));
-				newsWithBLOBs.setSource(job.getString("posterScreenName"));
-				newsWithBLOBs.setTime(new Date());
-				newsWithBLOBs.setImage(job.get("imageUrls").toString());
-				newsWithBLOBs.setTitle(job.getString("title"));
-				newsWithBLOBs.setTextContent(job.getString("content"));
-				newsWithBLOBsList.add(newsWithBLOBs);
+					List<GetNewsWithBLOBs> newsWithBLOBsList = new ArrayList<>();
+					for (int i = 0; i < data.length(); i++) {
+						GetNewsWithBLOBs newsWithBLOBs = new GetNewsWithBLOBs();
+						JSONObject job = data.getJSONObject(i);
+						newsWithBLOBs.setNewsLink(job.getString("url"));
+						newsWithBLOBs.setSource(job.getString("posterScreenName"));
+						newsWithBLOBs.setTime(new Date());
+						newsWithBLOBs.setImage(job.get("imageUrls").toString());
+						newsWithBLOBs.setTitle(job.getString("title"));
+						newsWithBLOBs.setTextContent(job.getString("content"));
+						newsWithBLOBsList.add(newsWithBLOBs);
+					}
+					log.info("开始上传：" + newsWithBLOBsList.size());
+					JsonResult result = getNewsFeign.insert(newsWithBLOBsList);
+					log.info("成功获取新闻数：" + result.toString());
+				}
 			}
-			log.info("开始上传：" + newsWithBLOBsList.size());
-			JsonResult result = getNewsFeign.insert(newsWithBLOBsList);
-			log.info("成功获取新闻数：" + result.getData());
+		}catch (Exception e){
+			e.printStackTrace();
 		}
+
 	}
 }
