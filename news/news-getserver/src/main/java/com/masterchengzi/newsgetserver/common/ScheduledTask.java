@@ -27,7 +27,6 @@ public class ScheduledTask {
 	//@Scheduled(fixedRate = 5000)
 	public void get360News() {
 		try {
-			log.info("开始获取数据");
 			JsonResult jsonResult = getNews.get360News("明星", null, "qq.com");
 			if ("200".equals(jsonResult.getCode())) {
 				String str = jsonResult.getData().toString();

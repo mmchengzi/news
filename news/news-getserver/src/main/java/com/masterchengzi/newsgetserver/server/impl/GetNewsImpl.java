@@ -53,7 +53,11 @@ public class GetNewsImpl implements GetNews {
 				url.append("&site=" + site);
 			}
 			JSONObject json = HttpUtils.getRequestFromUrl(url.toString());
-			return new JsonResult(ResultCode.SUCCESS, "成功", json);
+			if(json.has("data")){
+				return new JsonResult(ResultCode.SUCCESS, "成功", json.getJSONArray("data").toList());
+			}else{
+				return new JsonResult(ResultCode.FAIL, "没有查到信息");
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			return new JsonResult(ResultCode.FAIL, e.getMessage());
@@ -85,7 +89,11 @@ public class GetNewsImpl implements GetNews {
 				url.append("&city=" + city);
 			}
 			JSONObject json = HttpUtils.getRequestFromUrl(url.toString());
-			return new JsonResult(ResultCode.SUCCESS, "成功", json);
+			if(json.has("data")){
+				return new JsonResult(ResultCode.SUCCESS, "成功", json.getJSONArray("data").toList());
+			}else{
+				return new JsonResult(ResultCode.FAIL, "没有查到信息");
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			return new JsonResult(ResultCode.FAIL, e.getMessage());
@@ -98,6 +106,10 @@ public class GetNewsImpl implements GetNews {
 			SimpleDateFormat sDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm"); //加上时间
 			String url = JuheUrl + type;
 			JSONObject json = HttpUtils.getRequestFromUrl(url);
+			if(json.get("result").toString().equals("null")){
+				log.error("超过请求次数");
+				return new JsonResult(ResultCode.FAIL, "超过请求次数");
+			}
 			JSONObject jsonObject=json.getJSONObject("result");
 			if (jsonObject.get("stat").equals("1")) {
 				JSONArray data = jsonObject.getJSONArray("data");
